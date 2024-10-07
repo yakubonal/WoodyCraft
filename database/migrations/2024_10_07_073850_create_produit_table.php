@@ -11,16 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('produit', function (Blueprint $table) {
-            $table->id();
+            $table->id(); 
             $table->string('nom');
             $table->text('description');
             $table->decimal('prix', 8, 2);
-            $table->foreignId('categorie_id')->constrained('categorie')->onDelete('cascade');
+            $table->unsignedBigInteger('categorie_id'); 
             $table->integer('stock');
             $table->timestamps();
+            $table->foreign('categorie_id')->references('id')->on('categorie')->onDelete('cascade');
         });
-        
     }
 
     /**

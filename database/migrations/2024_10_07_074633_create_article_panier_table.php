@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('article_panier', function (Blueprint $table) {
             $table->id();
             $table->foreignId('panier_id')->constrained('panier')->onDelete('cascade');
