@@ -10,7 +10,7 @@ class PanierController extends Controller
     public function index()
     {
         // Logique pour récupérer les articles du panier
-        return view('panier.index'); // Remplacez 'panier.index' par la vue que vous souhaitez afficher
+        return view('produits/panier'); 
     }
 }
 

@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Utilisateur extends Model
+class user extends Model
 {
     use HasFactory;
 
-    protected $table = 'utilisateur';
+    protected $table = 'user';
 
     public function paniers()
     {

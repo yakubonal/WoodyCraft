@@ -11,9 +11,9 @@ class Commande extends Model
 
     protected $table = 'commande';
 
-    public function utilisateur()
+    public function user()
     {
-        return $this->belongsTo(Utilisateur::class);
+        return $this->belongsTo(user::class);
     }
 
     public function adresseLivraison()

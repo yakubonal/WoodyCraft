@@ -14,7 +14,7 @@ return new class extends Migration // Début de la définition de la migration
         Schema::disableForeignKeyConstraints(); // Désactive les contraintes de clé étrangère pour éviter les problèmes lors de la création de la table
         Schema::create('adresse', function (Blueprint $table) { // Création de la table 'adresse'
             $table->id(); // Création de la colonne 'id' (clé primaire, auto-increment)
-            $table->foreignId('utilisateur_id')->constrained('utilisateur')->onDelete('cascade'); // Création de la colonne 'utilisateur_id' qui fait référence à la table 'utilisateur' avec suppression en cascade
+            $table->foreignId('user_id')->constrained('user')->onDelete('cascade'); // Création de la colonne 'user_id' qui fait référence à la table 'user' avec suppression en cascade
             $table->enum('type_adresse', ['livraison', 'facturation']); // Création de la colonne 'type_adresse' qui peut être soit 'livraison', soit 'facturation'
             $table->string('rue'); // Création de la colonne 'rue' pour stocker l'adresse
             $table->string('ville'); // Création de la colonne 'ville' pour stocker la ville

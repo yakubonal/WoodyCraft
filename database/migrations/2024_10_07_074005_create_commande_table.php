@@ -14,7 +14,7 @@ return new class extends Migration // Début de la définition de la migration
         Schema::disableForeignKeyConstraints(); // Désactive les contraintes de clé étrangère pour éviter des problèmes lors de la création de la table
         Schema::create('commande', function (Blueprint $table) { // Création de la table 'commande'
             $table->id(); // Création de la colonne 'id' (clé primaire, auto-increment)
-            $table->foreignId('utilisateur_id')->constrained('utilisateur')->onDelete('cascade'); // Création de la colonne 'utilisateur_id' comme clé étrangère vers la table 'utilisateur'. Supprime la commande si l'utilisateur est supprimé.
+            $table->foreignId('user_id')->constrained('user')->onDelete('cascade'); // Création de la colonne 'user_id' comme clé étrangère vers la table 'user'. Supprime la commande si l'user est supprimé.
             $table->foreignId('panier_id')->constrained('panier')->onDelete('cascade'); // Création de la colonne 'panier_id' comme clé étrangère vers la table 'panier'. Supprime la commande si le panier est supprimé.
             $table->foreignId('adresse_livraison_id')->constrained('adresse')->onDelete('cascade'); // Création de la colonne 'adresse_livraison_id' comme clé étrangère vers la table 'adresse'. Supprime la commande si l'adresse de livraison est supprimée.
             $table->foreignId('adresse_facturation_id')->constrained('adresse')->onDelete('cascade'); // Création de la colonne 'adresse_facturation_id' comme clé étrangère vers la table 'adresse'. Supprime la commande si l'adresse de facturation est supprimée.

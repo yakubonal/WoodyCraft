@@ -11,9 +11,9 @@ class Panier extends Model
 
     protected $table = 'panier';
 
-    public function utilisateur()
+    public function user()
     {
-        return $this->belongsTo(Utilisateur::class);
+        return $this->belongsTo(user::class);
     }
 
     public function articles()

@@ -5,9 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AccueilController; // Ajoutez votre contrôleur d'accueil
 use App\Http\Controllers\ProduitController; // Ajoutez votre contrôleur pour les puzzles
+use App\Http\Controllers\PanierController; // Ajoutez votre contrôleur pour les puzzles
 use App\Http\Controllers\CartController; // Ajoutez votre contrôleur pour le panier
 use App\Http\Controllers\Auth\LoginController; // Contrôleur pour l'authentification
 use App\Http\Controllers\Auth\RegisterController; // Contrôleur pour l'inscription
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +27,8 @@ Route::get('/', function () {
     return view('accueil'); // Retourne la vue 'accueil' lorsque la route est accédée
 })->name('accueil'); // Donne un nom à cette route
 
-// Route pour la page des produits
-Route::get('/produits', [ProduitController::class, 'index'])->name('produits.index'); // Appelle la méthode 'index' du ProduitController
+// Route pour la page des lesproduits
+Route::get('/lesproduits', [ProduitController::class, 'index'])->name('lesproduits.index'); // Appelle la méthode 'index' du ProduitController
 
 // Route pour le panier
 Route::get('/panier', [PanierController::class, 'index'])->name('panier.index'); // Appelle la méthode 'index' du CartController
@@ -43,8 +45,11 @@ Route::post('/register', [Auth\RegisterController::class, 'register'])->name('re
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit'); // Affiche le formulaire d'édition du profil
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update'); // Traite la mise à jour du profil
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); // Supprime le profil de l'utilisateur
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); // Supprime le profil de l'user
 });
+
+// Route pour afficher les produits d'une catégorie
+Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
 
 // Route pour accéder au tableau de bord
 Route::get('/dashboard', function () {
