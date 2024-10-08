@@ -20,7 +20,7 @@ return new class extends Migration // Début de la définition de la migration
             $table->unsignedBigInteger('Categorie_id'); // Création de la colonne 'Categorie_id' pour référencer la catégorie du produit
             $table->integer('stock'); // Création de la colonne 'stock' pour indiquer la quantité de produit en stock
             $table->timestamps(); // Création des colonnes 'created_at' et 'updated_at' pour gérer les timestamps
-            $table->foreign('Categorie_id')->references('id')->on('Categorie')->onDelete('cascade'); // Définition de la clé étrangère pour 'Categorie_id', référencée par la colonne 'id' de la table 'Categorie' avec suppression en cascade
+            $table->foreign('Categorie_id')->references('id')->on('Categorie'); // Définition de la clé étrangère pour 'Categorie_id', référencée par la colonne 'id' de la table 'Categorie' avec suppression en cascade
         });
     }
 

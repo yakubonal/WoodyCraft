@@ -9,10 +9,32 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> <!-- Lien vers jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script> <!-- Lien vers Popper.js, utilisé pour le positionnement des éléments -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> <!-- Lien vers le fichier JavaScript de Bootstrap -->
+    <style>
+        .bg-image {
+            background-image: url('../images/fond.jpg'); /* Assurez-vous que ce chemin est correct */
+            background-size: cover; /* Couvre toute la zone sans déformation */
+            background-position: center; /* Centre l'image dans le conteneur */
+            background-repeat: no-repeat; /* Empêche l'image de se répéter */
+            height: 300px; /* Hauteur du conteneur */
+        }
+    </style>
 </head>
 <body>
     <x-app-layout>
-
+        <div class="bg-image d-flex justify-content-center align-items-center">
+            <h1 class="display-3 text-white">Bienvenue sur WoodyCraft4Shop</h1> <!-- Utilisation de la classe display-1 pour agrandir le texte -->
+        </div>
+        <div class="container my-4"> <!-- Conteneur pour la section des catégories -->
+            <h2 class="display-4 text-center mb-4">Nos Catégories</h2> <!-- Titre pour la section des catégories -->
+            <div class="text-center"> <!-- Centre les boutons -->
+                @foreach($categories as $categorie)
+                    <a href="{{ route('accueil', $categorie->id) }}" class="btn btn-primary mx-2"> <!-- Ajout de marges horizontales -->
+                        {{ $categorie->nom }}
+                    </a>
+                @endforeach
+            </div>
+        </div>
     </x-app-layout>
 </body>
 </html>
+

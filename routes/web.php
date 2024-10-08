@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\PanierController;
+use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -45,6 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update'); // Traite la mise à jour du profil
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); // Supprime le profil de l'user
 });
+
+Route::get('/', [CategorieController::class, 'accueil'])->name('accueil');
 
 // Route pour accéder au tableau de bord
 Route::get('/dashboard', function () {
