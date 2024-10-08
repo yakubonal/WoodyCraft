@@ -9,7 +9,7 @@ class ArticlePanier extends Model
 {
     use HasFactory;
 
-    protected $table = 'article_panier';
+    protected $table = 'articlePanier';
 
     public function panier()
     {
