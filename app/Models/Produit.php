@@ -15,9 +15,4 @@ class Produit extends Model
     {
         return $this->hasMany(ArticlePanier::class);
     }
-
-    public function categorie()
-    {
-        return $this->belongsTo(Categorie::class);
-    }
 }

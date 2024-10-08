@@ -17,7 +17,7 @@ return new class extends Migration // Début de la définition de la migration
             $table->string('nom'); // Création de la colonne 'nom' pour stocker le nom de la catégorie
             $table->text('description'); // Création de la colonne 'description' pour stocker la description de la catégorie
             $table->timestamps(); // Création des colonnes 'created_at' et 'updated_at' pour gérer les timestamps
-        });        
+        });
     }
 
     /**
@@ -28,4 +28,3 @@ return new class extends Migration // Début de la définition de la migration
         Schema::dropIfExists('categorie'); // Supprime la table 'categorie' si elle existe
     }
 };
-

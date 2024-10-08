@@ -3,13 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\AccueilController; // Ajoutez votre contrôleur d'accueil
-use App\Http\Controllers\ProduitController; // Ajoutez votre contrôleur pour les puzzles
-use App\Http\Controllers\PanierController; // Ajoutez votre contrôleur pour les puzzles
-use App\Http\Controllers\CartController; // Ajoutez votre contrôleur pour le panier
-use App\Http\Controllers\Auth\LoginController; // Contrôleur pour l'authentification
-use App\Http\Controllers\Auth\RegisterController; // Contrôleur pour l'inscription
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\PanierController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,9 +45,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update'); // Traite la mise à jour du profil
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); // Supprime le profil de l'user
 });
-
-// Route pour afficher les produits d'une catégorie
-Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
 
 // Route pour accéder au tableau de bord
 Route::get('/dashboard', function () {

@@ -12,62 +12,7 @@
 </head>
 <body>
     <x-app-layout>
-        <div class="container mt-4"> <!-- Conteneur principal avec une marge en haut -->
-            <div class="jumbotron text-center"> <!-- Jumbotron pour mettre en avant le titre et la description -->
-                <h2>WoodyCraft4Shop</h2> <!-- Titre principal -->
-                <p>This site is built with a flex layout, aligned and padded for the content will be centered horizontally and vertically.</p> <!-- Description du site -->
-            </div>
 
-            <div class="mb-4"> <!-- Section pour les catégories -->
-                <h3>Les catégories</h3> <!-- Titre pour la section des catégories -->
-                <div class="btn-group flex-wrap" role="group" aria-label="Catégories"> <!-- Groupe de boutons pour les catégories -->
-                    <button type="button" class="btn btn-outline-secondary">Animaux</button> <!-- Bouton pour la catégorie "Animaux" -->
-                    <button type="button" class="btn btn-outline-secondary">Architecture</button> <!-- Bouton pour la catégorie "Architecture" -->
-                    <button type="button" class="btn btn-outline-secondary">Fantastiques</button> <!-- Bouton pour la catégorie "Fantastiques" -->
-                    <button type="button" class="btn btn-outline-secondary">Engins Spéciaux</button> <!-- Bouton pour la catégorie "Engins Spéciaux" -->
-                    <button type="button" class="btn btn-outline-secondary">Musique</button> <!-- Bouton pour la catégorie "Musique" -->
-                    <button type="button" class="btn btn-outline-secondary">Paysages</button> <!-- Bouton pour la catégorie "Paysages" -->
-                    <button type="button" class="btn btn-outline-secondary">Objets</button> <!-- Bouton pour la catégorie "Objets" -->
-                    <button type="button" class="btn btn-outline-secondary">Sports</button> <!-- Bouton pour la catégorie "Sports" -->
-                    <button type="button" class="btn btn-outline-secondary">Monuments</button> <!-- Bouton pour la catégorie "Monuments" -->
-                    <button type="button" class="btn btn-outline-secondary">Véhicules</button> <!-- Bouton pour la catégorie "Véhicules" -->
-                </div>
-            </div>
-
-            <h3>Les lesproduits populaires</h3> <!-- Titre pour la section des lesproduits populaires -->
-            <div class="row"> <!-- Ligne pour aligner les lesproduits en colonnes -->
-                <div class="col-md-4"> <!-- Colonne pour le premier produit -->
-                    <div class="card mb-4"> <!-- Carte pour le produit avec une marge en bas -->
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Puzzle 1"> <!-- Image du produit -->
-                        <div class="card-body text-center"> <!-- Corps de la carte avec alignement centré -->
-                            <h5 class="card-title">Puzzle 1</h5> <!-- Titre du produit -->
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> <!-- Description du produit -->
-                            <button class="btn btn-success">Acheter</button> <!-- Bouton d'achat -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4"> <!-- Colonne pour le deuxième produit -->
-                    <div class="card mb-4"> <!-- Carte pour le produit -->
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Puzzle 2"> <!-- Image du produit -->
-                        <div class="card-body text-center"> <!-- Corps de la carte -->
-                            <h5 class="card-title">Puzzle 2</h5> <!-- Titre du produit -->
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> <!-- Description du produit -->
-                            <button class="btn btn-success">Acheter</button> <!-- Bouton d'achat -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4"> <!-- Colonne pour le troisième produit -->
-                    <div class="card mb-4"> <!-- Carte pour le produit -->
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Puzzle 3"> <!-- Image du produit -->
-                        <div class="card-body text-center"> <!-- Corps de la carte -->
-                            <h5 class="card-title">Puzzle 3</h5> <!-- Titre du produit -->
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> <!-- Description du produit -->
-                            <button class="btn btn-success">Acheter</button> <!-- Bouton d'achat -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </x-app-layout>
 </body>
 </html>
