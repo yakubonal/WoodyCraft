@@ -13,6 +13,11 @@ class Produit extends Model
 
     public function articles()
     {
-        return $this->hasMany(ArticlePanier::class);
+        return $this->hasMany(articlePanier::class);
+    }
+
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class); // Chaque produit appartient à une catégorie
     }
 }

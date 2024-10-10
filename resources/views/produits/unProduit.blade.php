@@ -12,7 +12,26 @@
 </head>
 <body>
     <x-app-layout>
-
+        <div class="container my-5">
+            <h1 class="text-center">{{ $produit->nom }}</h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Vérification si l'image existe avant de l'afficher -->
+                    @if ($produit->image_url)
+                        <img src="{{ $produit->image_url }}" class="img-fluid" alt="{{ $produit->nom }}">
+                    @else
+                        <img src="default-image-url.jpg" class="img-fluid" alt="Image par défaut">
+                    @endif
+                </div>
+                <div class="col-md-6">
+                    <h5>Description :</h5>
+                    <p>{{ $produit->description }}</p>
+                    <p><strong>Prix : {{ number_format($produit->prix, 2) }} €</strong></p>
+                    <a href="#" class="btn btn-primary">Ajouter au panier</a>
+                </div>
+            </div>
+            <a href="{{ url()->previous() }}" class="btn btn-secondary mt-4">Retour</a>
+        </div>
     </x-app-layout>
 </body>
 </html>

@@ -28,9 +28,9 @@
             <h2 class="display-4 text-center mb-4">Nos Catégories</h2> <!-- Titre pour la section des catégories -->
             <div class="text-center"> <!-- Centre les boutons -->
                 @foreach($categories as $categorie)
-                    <a href="{{ route('accueil', $categorie->id) }}" class="btn btn-primary mx-2"> <!-- Ajout de marges horizontales -->
-                        {{ $categorie->nom }}
-                    </a>
+                <a href="{{ route('produitParCategorie', $categorie->id) }}" class="btn btn-primary mx-2">
+                    {{ $categorie->nom }}
+                </a>
                 @endforeach
             </div>
         </div>

@@ -29,6 +29,10 @@ Route::get('/', function () {
 // Route pour la page des lesproduits
 Route::get('/lesproduits', [ProduitController::class, 'index'])->name('lesproduits.index'); // Appelle la méthode 'index' du ProduitController
 
+Route::get('/produit/{id}', [ProduitController::class, 'show'])->name('produit.show');
+
+Route::get('/categorie/{id}', [CategorieController::class, 'show'])->name('produitsParCategorie');
+
 // Route pour le panier
 Route::get('/panier', [PanierController::class, 'index'])->name('panier.index'); // Appelle la méthode 'index' du CartController
 

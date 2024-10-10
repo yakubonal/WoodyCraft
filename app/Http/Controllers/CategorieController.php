@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorie;
+use App\Models\Produit; // Modèle Produit
 use Illuminate\Http\Request;
 
 class CategorieController extends Controller
@@ -10,15 +11,29 @@ class CategorieController extends Controller
     // Méthode pour afficher l'accueil avec les catégories
     public function accueil()
     {
-        $categories = Categorie::all(); // Récupère toutes les catégories
+        // Récupère toutes les catégories depuis la base de données
+        $categories = Categorie::all(); // 'Categorie' avec majuscule
+
+        // Retourne la vue 'accueil' avec les catégories
         return view('accueil', compact('categories'));
     }
 
-    // Méthode pour afficher les puzzles par catégorie
+    // Méthode pour afficher les produits (puzzles) par catégorie
     public function show($id)
     {
-        $puzzles = Puzzle::where('categorie_id', $id)->get(); // Récupère les puzzles associés à la catégorie
-        return view('puzzles.index', compact('puzzles'));
-    }
-}
+        // Récupérer la catégorie et ses produits
+        $categorie = Categorie::findOrFail($id);
+        $produits = Produit::where('categorie_id', $id)->get(); // Récupérer les produits de la catégorie
 
+        // Vérification des données
+        if ($produits->isEmpty()) {
+            // Si aucun produit n'est trouvé, vous pouvez retourner un message approprié
+            return view('produits.produitsParCategorie', ['produits' => [], 'categorie' => $categorie]);
+        }
+
+        // Si des produits sont trouvés, passez-les à la vue
+        return view('produits.produitsParCategorie', compact('produits', 'categorie'));
+    }
+
+
+}
