@@ -32,6 +32,6 @@ class CategorieController extends Controller
         }
 
         // Si des produits sont trouvés, passez-les à la vue
-        return view('produits.produitsParCategorie', compact('produits', 'categorie'));
+        return view('produits.produitsParCategorie', ['produits' => $produits, 'categorie' => $categorie]);
     }
 }
