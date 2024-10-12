@@ -11,11 +11,12 @@ class CategorieController extends Controller
     // Méthode pour afficher toutes les catégories
     public function index()
     {
-        // Récupère toutes les catégories depuis la base de données
-        $categories = Categorie::all(); // 'Categorie' avec majuscule
+        // Récupère toutes les catégories et les produits depuis la base de données
+        $categories = Categorie::all();
+        $produits = Produit::all();
 
-        // Retourne la vue 'accueil' avec les catégories
-        return view('accueil', compact('categories'));
+        // Retourne la vue 'accueil' avec les données
+        return view('accueil', compact('categories', 'produits'));
     }
 
     // Méthode pour afficher les produits (puzzles) par catégorie
