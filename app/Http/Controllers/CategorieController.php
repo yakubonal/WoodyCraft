@@ -27,8 +27,8 @@ class CategorieController extends Controller
 
         // Vérification des données
         if ($produits->isEmpty()) {
-            // Si aucun produit n'est trouvé, vous pouvez retourner un message approprié
-            return view('produits.produitsParCategorie', ['produits' => [], 'categorie' => $categorie]);
+            // Si aucun produit n'est trouvé, on envoie une collection vide
+            return view('produits.produitsParCategorie', ['produits' => collect(), 'categorie' => $categorie]);
         }
 
         // Si des produits sont trouvés, passez-les à la vue

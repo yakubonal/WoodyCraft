@@ -15,7 +15,7 @@
         <div class="container">
             <h1 class="my-4">Produits de la catégorie : {{ $categorie->nom }}</h1>
 
-            @if(count($produits))
+            @if($produits->isEmpty())
                 <p>Aucun produit disponible pour cette catégorie.</p>
             @else
                 <div class="row">
