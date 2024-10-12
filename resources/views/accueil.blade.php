@@ -28,7 +28,7 @@
             <h2 class="display-4 text-center mb-4">Nos Catégories</h2> <!-- Titre pour la section des catégories -->
             <div class="text-center"> <!-- Centre les boutons -->
                 @foreach($categories as $categorie)
-                <a href="{{ route('produitsParCategorie.show', $categorie->id) }}" class="btn btn-primary mx-2">
+                <a href="{{ route('categorie.index', $categorie->id) }}" class="btn btn-primary mx-2">
                     {{ $categorie->nom }}
                 </a>
                 @endforeach

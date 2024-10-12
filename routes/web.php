@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); // Supprime le profil de l'user
 });
 
-Route::get('/', [CategorieController::class, 'accueil'])->name('accueil');
+Route::get('/', [CategorieController::class, 'index'])->name('categorie.index');
 
 // Route pour accéder au tableau de bord
 Route::get('/dashboard', function () {

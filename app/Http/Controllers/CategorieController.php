@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 
 class CategorieController extends Controller
 {
-    // Méthode pour afficher l'accueil avec les catégories
-    public function accueil()
+    // Méthode pour afficher toutes les catégories
+    public function index()
     {
         // Récupère toutes les catégories depuis la base de données
         $categories = Categorie::all(); // 'Categorie' avec majuscule
@@ -34,6 +34,4 @@ class CategorieController extends Controller
         // Si des produits sont trouvés, passez-les à la vue
         return view('produits.produitsParCategorie', compact('produits', 'categorie'));
     }
-
-
 }

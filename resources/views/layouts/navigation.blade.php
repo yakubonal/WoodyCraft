@@ -2,9 +2,9 @@
     <!-- En-tête de la page avec une couleur de fond et du texte blanc -->
     <nav class="d-flex align-items-center">
         <!-- Navigation principale -->
-        <a href="{{ route('accueil') }}" class="text-white mx-3 hover:underline">WoodyCraft4Shop</a>
+        <a href="{{ route('categorie.index') }}" class="text-white mx-3 hover:underline">WoodyCraft4Shop</a>
         <!-- Titre de l'application -->
-        <a href="{{ route('accueil') }}" class="text-white mx-3 hover:underline">Accueil</a>
+        <a href="{{ route('categorie.index') }}" class="text-white mx-3 hover:underline">Accueil</a>
         <!-- Lien vers la page d'accueil -->
         <a href="{{ route('lesproduits.index') }}" class="text-white mx-3 hover:underline">Les produits</a>
         <!-- Lien vers la page des lesproduits -->
