@@ -31,8 +31,6 @@ Route::get('/lesproduits', [ProduitController::class, 'index'])->name('lesprodui
 
 Route::get('/produit/{id}', [ProduitController::class, 'show'])->name('produit.show');
 
-Route::get('/categorie/{id}', [CategorieController::class, 'show'])->name('produitsParCategorie.show');
-
 // Route pour le panier
 Route::get('/panier', [PanierController::class, 'index'])->name('panier.index'); // Appelle la méthode 'index' du CartController
 
@@ -52,6 +50,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/', [CategorieController::class, 'index'])->name('categorie.index');
+Route::get('/categorie/{id}', [CategorieController::class, 'show'])->name('categorie.show');
 
 // Route pour accéder au tableau de bord
 Route::get('/dashboard', function () {
