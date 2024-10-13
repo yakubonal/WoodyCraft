@@ -32,7 +32,8 @@ Route::get('/lesproduits', [ProduitController::class, 'index'])->name('lesprodui
 Route::get('/produit/{id}', [ProduitController::class, 'show'])->name('produit.show');
 
 // Route pour le panier
-Route::get('/panier', [PanierController::class, 'index'])->name('panier.index'); // Appelle la méthode 'index' du CartController
+Route::get('/panier', [PanierController::class, 'index'])->name('panier.index'); // Appelle la méthode 'index' du PanierController
+Route::post('/panier', [PanierController::class, 'ajout'])->name('panier.ajout'); // Appelle la méthode 'ajout' du PanierController
 
 Route::get('/', [CategorieController::class, 'index'])->name('categorie.index');
 Route::get('/categorie/{id}', [CategorieController::class, 'show'])->name('categorie.show');

@@ -11,13 +11,12 @@ class Panier extends Model
 
     protected $table = 'panier';
 
-    public function user()
-    {
-        return $this->belongsTo(user::class);
-    }
-
-    public function articles()
-    {
-        return $this->hasMany(ArticlePanier::class);
-    }
+    /**
+     * Liste des attributs assignables.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'session_id',
+    ];
 }

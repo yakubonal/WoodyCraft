@@ -14,7 +14,12 @@
                 <h5>Description :</h5>
                 <p>{{ $produit->description }}</p>
                 <p><strong>Prix : {{ number_format($produit->prix, 2) }} €</strong></p>
-                <a href="#" class="btn btn-primary">Ajouter au panier</a>
+                <form method="POST" action="{{ route('panier.ajout') }}">
+                    @csrf
+                    <input type="hidden" name="produit_id" value="{{ $produit->id }}">
+                    <input type="number" name="quantity" placeholder="Quantité ?" class="form-control mr-2" min="0" max="10" >
+                    <button type="submit" class="btn btn-primary">Ajouter au panier</a>
+                </form>
             </div>
         </div>
         <a href="{{ url()->previous() }}" class="btn btn-secondary mt-4">Retour</a>

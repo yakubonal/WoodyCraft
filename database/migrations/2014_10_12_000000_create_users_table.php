@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints(); // Désactive les contraintes de clé étrangère pour éviter les problèmes lors de la création de la table
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -18,6 +19,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->foreignId('panier_id')->constrained('panier')->onDelete('cascade'); // Création de la colonne 'panier_id' comme clé étrangère vers la table 'panier'. Si l'user est supprimé, le panier sera également supprimé.
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ return new class extends Migration // Début de la définition de la migration
         Schema::disableForeignKeyConstraints(); // Désactive les contraintes de clé étrangère pour éviter les problèmes lors de la création de la table
         Schema::create('panier', function (Blueprint $table) { // Création de la table 'panier'
             $table->id(); // Création de la colonne 'id' (clé primaire, auto-increment)
-            $table->foreignId('user_id')->constrained('user')->onDelete('cascade'); // Création de la colonne 'user_id' comme clé étrangère vers la table 'user'. Si l'user est supprimé, le panier sera également supprimé.
+            $table->string("session_id")->nullable(); // Colonne qui stocke l'id de session si le panier appartient à un invité
             $table->timestamps(); // Création des colonnes 'created_at' et 'updated_at' pour gérer les timestamps
         });
     }

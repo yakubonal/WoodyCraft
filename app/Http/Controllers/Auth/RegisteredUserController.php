@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Panier;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -36,9 +37,13 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        // Création du panier du futur utilisateur
+        $panier = Panier::create();
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'panier_id' => $panier->id,
             'password' => Hash::make($request->password),
         ]);
 
