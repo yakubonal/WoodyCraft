@@ -12,7 +12,7 @@ return new class extends Migration // Début de la définition de la migration
     public function up(): void
     {
         Schema::disableForeignKeyConstraints(); // Désactive les contraintes de clé étrangère pour éviter des problèmes lors de la création de la table
-        Schema::create('articlePanier', function (Blueprint $table) { // Création de la table 'article_panier'
+        Schema::create('article_panier', function (Blueprint $table) { // Création de la table 'article_panier'
             $table->id(); // Création de la colonne 'id' (clé primaire, auto-increment)
             $table->foreignId('panier_id')->constrained('panier')->onDelete('cascade'); // Création de la colonne 'panier_id' comme clé étrangère vers la table 'panier'. Supprime les articles si le panier associé est supprimé.
             $table->foreignId('produit_id')->constrained('produit')->onDelete('cascade'); // Création de la colonne 'produit_id' comme clé étrangère vers la table 'produit'. Supprime l'article si le produit associé est supprimé.

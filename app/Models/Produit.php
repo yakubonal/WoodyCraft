@@ -13,7 +13,7 @@ class Produit extends Model
 
     public function articles()
     {
-        return $this->hasMany(articlePanier::class);
+        return $this->hasMany(article_panier::class);
     }
 
     public function categorie()
