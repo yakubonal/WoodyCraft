@@ -56,14 +56,27 @@ class PanierController extends Controller
     {
         $panier = $this->get_panier($request);
 
-        // TODO Si le produit est déjà dans le panier, modifier sa quantité
+        // Si le produit est déjà dans le panier
+            // Modifier la quantite selon le produit 
+        //Sionon ajout du produit dans panier
 
-        // Ajout du produit dans le panier associé à l'utilisateur
-        ArticlePanier::create([
-            'produit_id' => Produit::findOrFail($request->produit_id)->id,
-            'panier_id' => $panier->id,
-            'quantity' => $request->quantity,
-        ]);
+        // Vérification si le produit est déjà dans le panier
+        $article = ArticlePanier::where('produit_id', $request->produit_id)
+        ->where('panier_id', $panier->id)
+        ->first();
+
+        if ($article) {
+            // Si le produit est déjà dans le panier, on augmente la quantité
+            $article->quantity += $request->quantity;
+            $article->save();
+        } else {
+            // Ajout du produit dans le panier associé à l'utilisateur
+            ArticlePanier::create([
+                'produit_id' => Produit::findOrFail($request->produit_id)->id,
+                'panier_id' => $panier->id,
+                'quantity' => $request->quantity,
+            ]);
+        }
 
         // Affichage du panier
         return redirect('/panier');
