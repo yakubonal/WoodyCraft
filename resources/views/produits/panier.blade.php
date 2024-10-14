@@ -16,6 +16,15 @@
                             <p class="card-text">{{ $produit->description }}</p>
                             <p class="card-text">Prix : {{ number_format($produit->prix, 2) }} €</p>
                             <p class="card-text">Quantité : {{ $produit->quantity }}</p>
+                            <!-- On doit pouvoir modifier la quantite dans le panier et que sa modifie dans la base de donnée -->
+                            <!-- On doit pouvoir supprimer le produit du panier -->
+
+
+
+
+
+
+
                         </div>
                     </div>
                 </div>
