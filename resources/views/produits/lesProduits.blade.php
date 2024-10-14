@@ -9,7 +9,7 @@
                         @if ($produit->image_url)
                             <img src="{{ $produit->image_url }}" class="card-img-top" alt="{{ $produit->nom }}">
                         @else
-                            <img src="default-image-url.jpg" class="card-img-top" alt="Image par défaut">
+                            <img src="{{ asset('images/default-image-url.png') }}" class="card-img-top" alt="Image par défaut">
                         @endif
                         <div class="card-body">
                             <h5 class="card-title">{{ $produit->nom }}</h5>

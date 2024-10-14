@@ -1,34 +1,75 @@
 <x-app-layout>
     <div class="container">
         <h1 class="text-center my-4">Panier</h1>
+
+        <!-- Affichage des messages de succès ou d'erreur -->
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
+            </div>
+        @endif
+
         <div class="row">
-            @foreach ($produits as $produit)
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <!-- Vérification si l'image existe avant de l'afficher -->
-                        @if ($produit->image_url)
-                            <img src="{{ $produit->image_url }}" class="card-img-top" alt="{{ $produit->nom }}">
-                        @else
-                            <img src="default-image-url.jpg" class="card-img-top" alt="Image par défaut">
-                        @endif
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $produit->nom }}</h5>
-                            <p class="card-text">{{ $produit->description }}</p>
-                            <p class="card-text">Prix : {{ number_format($produit->prix, 2) }} €</p>
-                            <p class="card-text">Quantité : {{ $produit->quantity }}</p>
-                            <!-- On doit pouvoir modifier la quantite dans le panier et que sa modifie dans la base de donnée -->
-                            <!-- On doit pouvoir supprimer le produit du panier -->
+            <div class="col s12 cards-container">
+                @foreach ($produits as $produit)
+                    <div class="card mb-4">
+                        <div class="row g-0 d-flex align-items-center">
+                            <!-- Affichage de l'image -->
+                            <div class="col-md-4">
+                                @if ($produit->image_url)
+                                    <img src="{{ $produit->image_url }}" alt="{{ $produit->nom }}" class="img-fluid" style="max-width: 150px;">
+                                @else
+                                    <img src="{{ asset('images/default-image-url.png') }}" alt="Image par défaut" class="img-fluid" style="max-width: 150px;">
+                                @endif
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $produit->nom }}</h5>
+                                    <p class="card-text">{{ $produit->description }}</p>
+                                    <p class="card-text">Prix : {{ number_format($produit->prix, 2) }} €</p>
+                                    <div class="d-flex align-items-center mb-3">
+                                        <!-- Formulaire pour diminuer la quantité -->
+                                        <form action="{{ route('panier.modifier', $produit->id) }}" method="POST" class="me-2">
+                                            @csrf
+                                            @method('PATCH')
+                                            <input type="hidden" name="quantity" value="-1">
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary">-</button>
+                                        </form>
 
+                                        <!-- Affichage de la quantité -->
+                                        <span>{{ $produit->quantity }}</span>
 
+                                        <!-- Formulaire pour augmenter la quantité -->
+                                        <form action="{{ route('panier.modifier', $produit->id) }}" method="POST" class="ms-2">
+                                            @csrf
+                                            @method('PATCH')
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary">+</button>
+                                        </form>
+                                    </div>
 
-
-
-
-
+                                    <!-- Formulaire pour supprimer le produit -->
+                                    <form action="{{ route('panier.supprimer', $produit->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit du panier ?');">
+                                            <i class="fa fa-trash"></i> Supprimer
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </div>
 </x-app-layout>

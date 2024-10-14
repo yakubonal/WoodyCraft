@@ -42,11 +42,9 @@ class PanierController extends Controller
         $panier = $this->get_panier($request);
 
         // Obtention de la liste des produits du panier
-        $produits = Produit::with('articles')
-        ->join('article_panier', 'article_panier.produit_id', '=', 'produit.id')
-        ->join('panier', 'article_panier.panier_id', '=', 'panier.id')
-        ->where('panier.id', $panier->id)
-        ->get();
+        $produits = Produit::join('article_panier', 'article_panier.produit_id', '=', 'produit.id')
+        ->where('article_panier.panier_id', $panier->id)
+        ->get(['produit.*', 'article_panier.quantity as quantity']);
 
         return view('produits/panier', ['produits' => $produits]);
     }
@@ -57,13 +55,13 @@ class PanierController extends Controller
         $panier = $this->get_panier($request);
 
         // Si le produit est déjà dans le panier
-            // Modifier la quantite selon le produit 
+            // Modifier la quantite selon le produit
         //Sionon ajout du produit dans panier
 
         // Vérification si le produit est déjà dans le panier
         $article = ArticlePanier::where('produit_id', $request->produit_id)
-        ->where('panier_id', $panier->id)
-        ->first();
+            ->where('panier_id', $panier->id)
+            ->first();
 
         if ($article) {
             // Si le produit est déjà dans le panier, on augmente la quantité
@@ -80,5 +78,71 @@ class PanierController extends Controller
 
         // Affichage du panier
         return redirect('/panier');
+    }
+
+    /**
+     * Modifier la quantité d'un produit dans le panier.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $produit_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function modifier(Request $request, $produit_id)
+    {
+        // Validation des données entrantes
+        $request->validate([
+            'quantity' => 'required|integer',
+        ]);
+
+        // Récupérer le panier actuel
+        $panier = $this->get_panier($request);
+
+        // Trouver l'article du panier correspondant au produit
+        $article = ArticlePanier::where('produit_id', $produit_id)
+            ->where('panier_id', $panier->id)
+            ->first();
+
+        if ($article) {
+            // Modifier la quantité
+            $article->quantity += $request->quantity;
+
+            if ($article->quantity < 1) {
+                // Supprimer l'article si la quantité est inférieure à 1
+                $article->delete();
+                return redirect()->back()->with('success', 'Produit supprimé du panier.');
+            } else {
+                // Sauvegarder les modifications
+                $article->save();
+                return redirect()->back()->with('success', 'Quantité mise à jour.');
+            }
+        }
+
+        return redirect()->back()->with('error', 'Produit non trouvé dans le panier.');
+    }
+
+    /**
+     * Supprimer un produit du panier.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $produit_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function supprimer(Request $request, $produit_id)
+    {
+        // Récupérer le panier actuel
+        $panier = $this->get_panier($request);
+
+        // Trouver l'article du panier correspondant au produit
+        $article = ArticlePanier::where('produit_id', $produit_id)
+            ->where('panier_id', $panier->id)
+            ->first();
+
+        if ($article) {
+            // Supprimer l'article du panier
+            $article->delete();
+            return redirect()->back()->with('success', 'Produit supprimé du panier.');
+        }
+
+        return redirect()->back()->with('error', 'Produit non trouvé dans le panier.');
     }
 }

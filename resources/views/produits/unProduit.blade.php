@@ -7,7 +7,7 @@
                 @if ($produit->image_url)
                     <img src="{{ $produit->image_url }}" class="img-fluid" alt="{{ $produit->nom }}">
                 @else
-                    <img src="default-image-url.jpg" class="img-fluid" alt="Image par défaut">
+                    <img src="{{ asset('images/default-image-url.png') }}" class="img-fluid" alt="Image par défaut">
                 @endif
             </div>
             <div class="col-md-6">

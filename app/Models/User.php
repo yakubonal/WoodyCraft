@@ -43,4 +43,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Relation avec Panier.
+     * Un utilisateur appartient à un panier.
+     */
+    public function panier()
+    {
+        return $this->belongsTo(Panier::class, 'panier_id');
+    }
 }

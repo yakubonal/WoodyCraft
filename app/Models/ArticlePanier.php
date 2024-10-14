@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,13 +23,13 @@ class ArticlePanier extends Model
     ];
 
 
-    public function panier(): HasOne
+    public function panier()
     {
-        return $this->hasOne(Panier::class);
+        return $this->belongsTo(Panier::class, 'panier_id');
     }
 
-    public function produit(): HasOne
+    public function produit()
     {
-        return $this->hasOne(Produit::class);
+        return $this->belongsTo(Produit::class, 'produit_id');
     }
 }

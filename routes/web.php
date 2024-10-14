@@ -1,14 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\CategorieController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +30,8 @@ Route::get('/produit/{id}', [ProduitController::class, 'show'])->name('produit.s
 // Route pour le panier
 Route::get('/panier', [PanierController::class, 'index'])->name('panier.index'); // Appelle la méthode 'index' du PanierController
 Route::post('/panier', [PanierController::class, 'ajout'])->name('panier.ajout'); // Appelle la méthode 'ajout' du PanierController
+Route::patch('/panier/{produit}/modifier', [PanierController::class, 'modifier'])->name('panier.modifier');
+Route::delete('/panier/{produit}/supprimer', [PanierController::class, 'supprimer'])->name('panier.supprimer');
 
 Route::get('/', [CategorieController::class, 'index'])->name('categorie.index');
 Route::get('/categorie/{id}', [CategorieController::class, 'show'])->name('categorie.show');

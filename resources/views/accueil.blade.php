@@ -1,7 +1,7 @@
 <head>
     <style>
         .bg-image {
-            background-image: url('../images/fond.jpg'); /* Assurez-vous que ce chemin est correct */
+            background-image: url({{ asset('images/fond.jpg') }});
             background-size: cover; /* Couvre toute la zone sans déformation */
             background-position: center; /* Centre l'image dans le conteneur */
             background-repeat: no-repeat; /* Empêche l'image de se répéter */
@@ -35,7 +35,7 @@
                         @if ($produit->image_url)
                             <img src="{{ $produit->image_url }}" class="card-img-top" alt="{{ $produit->nom }}">
                         @else
-                            <img src="default-image-url.jpg" class="card-img-top" alt="Image par défaut">
+                            <img src="{{ asset('images/default-image-url.png') }}" class="card-img-top" alt="Image par défaut">
                         @endif
                         <div class="card-body">
                             <h5 class="card-title">{{ $produit->nom }}</h5>
