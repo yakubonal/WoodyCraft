@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'panier_id',
+        'adresse_id',
         'password',
     ];
 
@@ -51,5 +52,14 @@ class User extends Authenticatable
     public function panier()
     {
         return $this->belongsTo(Panier::class, 'panier_id');
+    }
+
+    /**
+     * Relation avec Adresse.
+     * Un utilisateur appartient à un adresse.
+     */
+    public function adresse()
+    {
+        return $this->hasOne(Adresse::class, 'adresse_id');
     }
 }

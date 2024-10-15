@@ -22,6 +22,6 @@
                 </form>
             </div>
         </div>
-        <a href="{{ url()->previous() }}" class="btn btn-secondary mt-4">Retour</a>
+        <a href="{{ route('lesproduits.index') }}" class="btn btn-secondary mt-4">Retour</a>
     </div>
 </x-app-layout>

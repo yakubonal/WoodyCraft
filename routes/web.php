@@ -5,6 +5,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\AdresseController;
+use App\Http\Controllers\CommandeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,14 +29,17 @@ Route::get('/lesproduits', [ProduitController::class, 'index'])->name('lesprodui
 
 Route::get('/produit/{id}', [ProduitController::class, 'show'])->name('produit.show');
 
+Route::get('/', [CategorieController::class, 'index'])->name('categorie.index');
+Route::get('/categorie/{id}', [CategorieController::class, 'show'])->name('categorie.show');
+
 // Route pour le panier
 Route::get('/panier', [PanierController::class, 'index'])->name('panier.index'); // Appelle la méthode 'index' du PanierController
 Route::post('/panier', [PanierController::class, 'ajout'])->name('panier.ajout'); // Appelle la méthode 'ajout' du PanierController
 Route::patch('/panier/{produit}/modifier', [PanierController::class, 'modifier'])->name('panier.modifier');
 Route::delete('/panier/{produit}/supprimer', [PanierController::class, 'supprimer'])->name('panier.supprimer');
 
-Route::get('/', [CategorieController::class, 'index'])->name('categorie.index');
-Route::get('/categorie/{id}', [CategorieController::class, 'show'])->name('categorie.show');
+Route::get('/adresse', [AdresseController::class, 'index'])->name('adresse.index');
+Route::post('/adresse', [AdresseController::class, 'store'])->name('adresse.store');
 
 // Route pour générer un PDF d'un post spécifique
 Route::get('/posts/{post}/pdf', [PostController::class, 'getPostPdf']); // Appelle la méthode pour générer un PDF du post

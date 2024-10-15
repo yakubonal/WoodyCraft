@@ -9,10 +9,13 @@ class Adresse extends Model
 {
     use HasFactory;
 
-    protected $table = 'adresse';
+    protected $table = 'adresses';
 
-    public function user()
-    {
-        return $this->belongsTo(user::class);
-    }
+    protected $fillable = [
+        'rue',
+        'ville',
+        'code_postal',
+        'pays',
+    ];
+
 }
