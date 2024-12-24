@@ -7,6 +7,7 @@ use App\Http\Controllers\PanierController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\AdresseController;
 use App\Http\Controllers\CommandeController;
+use App\Http\Controllers\PaiementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,5 +44,9 @@ Route::post('/adresse', [AdresseController::class, 'store'])->name('adresse.stor
 
 // Route pour générer un PDF d'un post spécifique
 Route::get('/posts/{post}/pdf', [PostController::class, 'getPostPdf']); // Appelle la méthode pour générer un PDF du post
+
+Route::get('/paiement/{adresse}', [PaiementController::class, 'index'])->name('paiement.index');
+Route::post('/paiement/paypal', [PaiementController::class, 'paypal'])->name('paiement.paypal');
+Route::post('/paiement/cheque', [PaiementController::class, 'cheque'])->name('paiement.cheque');
 
 require __DIR__.'/auth.php'; // Charge les routes d'authentification
