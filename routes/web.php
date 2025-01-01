@@ -7,6 +7,7 @@ use App\Http\Controllers\PanierController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\AdresseController;
 use App\Http\Controllers\CommandeController;
+
 use App\Http\Controllers\PaiementController;
 
 /*
@@ -48,5 +49,13 @@ Route::get('/posts/{post}/pdf', [PostController::class, 'getPostPdf']); // Appel
 Route::get('/paiement/{adresse}', [PaiementController::class, 'index'])->name('paiement.index');
 Route::post('/paiement/paypal', [PaiementController::class, 'paypal'])->name('paiement.paypal');
 Route::post('/paiement/cheque', [PaiementController::class, 'cheque'])->name('paiement.cheque');
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+    // Ajoutez ici d'autres routes admin si nécessaire
+});
+
 
 require __DIR__.'/auth.php'; // Charge les routes d'authentification

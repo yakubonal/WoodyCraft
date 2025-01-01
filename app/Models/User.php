@@ -23,7 +23,14 @@ class User extends Authenticatable
         'panier_id',
         'adresse_id',
         'password',
+        'is_admin',
     ];
+
+    // Ajout de la méthode pour vérifier si l'utilisateur est admin
+    public function isAdmin()
+    {
+        return $this->is_admin == true; // Notez le double égal au lieu du triple
+    }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             'name' => "Yakub",
             'email' => "a@a.a",
             'password' => Hash::make("azer"),
+            'is_admin' => true,
         ]);
 
         // Création des catégories par défaut
