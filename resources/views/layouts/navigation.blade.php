@@ -1,4 +1,4 @@
-<header class="bg-success text-white p-3 d-flex justify-content-between align-items-center">
+<header class="bg-success text-white p-1 d-flex justify-content-between align-items-center">
     <!-- En-tête de la page avec une couleur de fond et du texte blanc -->
     <!-- Navigation principale -->
     <nav class="d-flex align-items-center">
