@@ -1,8 +1,10 @@
 <x-app-layout>
     <div class="container">
-        <h1 class="text-center my-4">Panier</h1>
+        <div class="container my-5 position-relative">
+            <a href="{{ route('categorie.index') }}" class="btn position-absolute start-0" style="top: -10px; background-color: #a3e4a1; color: #155724; border: 1px solid #81d48a;">Retour</a>
 
-        <!-- Affichage des messages de succès ou d'erreur -->
+            <h1 class="text-center my-4">Panier</h1>
+        </div>
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
@@ -25,9 +27,9 @@
                             <!-- Affichage de l'image -->
                             <div class="col-md-4">
                                 @if ($produit->image_url)
-                                    <img src="{{ $produit->image_url }}" alt="{{ $produit->nom }}" class="img-fluid" style="max-width: 150px;">
+                                    <img src="{{ $produit->image_url }}" alt="{{ $produit->nom }}" class="img-fluid rounded" style="width: 100%; height: 100%; object-fit: cover;">
                                 @else
-                                    <img src="{{ asset('images/default-image-url.png') }}" alt="Image par défaut" class="img-fluid" style="max-width: 150px;">
+                                    <img src="{{ asset('images/default-image-url.png') }}" alt="Image par défaut" class="img-fluid rounded" style="width: 100%; height: 100%; object-fit: cover;">
                                 @endif
                             </div>
                             <div class="col-md-8">
@@ -37,7 +39,7 @@
                                     <p class="card-text">Prix : {{ number_format($produit->prix, 2) }} €</p>
                                     <div class="d-flex align-items-center mb-3">
                                         <!-- Formulaire pour diminuer la quantité -->
-                                        <form action="{{ route('panier.modifier', $produit->id) }}" method="POST" class="me-2">
+                                        <form action="{{ route('panier.modifier', $produit->id) }}" method="POST" class="me-2 mr-2">
                                             @csrf
                                             @method('PATCH')
                                             <input type="hidden" name="quantity" value="-1">
@@ -71,10 +73,9 @@
                 @endforeach
             </div>
         </div>
-        <!-- Nouveau bouton pour aller à la page d'adresse avant le paiement -->
-        <div class="d-flex justify-content-between align-items-center mt-4">
-            <a href="{{ route('categorie.index') }}" class="btn btn-secondary">Retour</a>
-            <a href="{{ route('adresse.index') }}" class="btn btn-secondary mt-4">Procéder au paiement</a>
-        </div>
+        <!-- Bouton pour aller à la page d'adresse avant le paiement -->
+        <div class="d-flex justify-content-end mt-2 mb-5">
+            <a href="{{ route('adresse.index') }}" class="btn btn-success">Procéder au paiement</a>
+        </div>        
     </div>
 </x-app-layout>
