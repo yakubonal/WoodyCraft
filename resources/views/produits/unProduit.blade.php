@@ -2,7 +2,7 @@
     <div class="container my-5">
         <div class="container my-5 position-relative">
             <!-- Bouton "Retour" légèrement plus haut que le titre -->
-            <a href="{{ route('lesproduits.index') }}" class="btn btn-secondary position-absolute start-0" style="top: -10px;">Retour</a>
+            <a href="{{ route('categorie.index') }}" class="btn btn-secondary position-absolute start-0" style="top: -10px;">Retour</a>
             <h1 class="text-center my-5 py-4">{{ $produit->nom }}</h1>
             <div class="row">
                 <div class="col-md-6">
