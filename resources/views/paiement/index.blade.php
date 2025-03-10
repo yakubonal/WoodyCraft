@@ -8,7 +8,7 @@
                         <h5>PayPal</h5>
                         <form action="{{ route('paiement.paypal') }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-primary">Payer avec PayPal</button>
+                            <button type="submit" class="btn btn-success">Payer avec PayPal</button>
                         </form>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
                         <h5>Chèque</h5>
                         <form action="{{ route('paiement.cheque') }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-secondary">Payer par chèque</button>
+                            <button type="submit" class="btn btn-success">Payer par chèque</button>
                         </form>
                     </div>
                 </div>

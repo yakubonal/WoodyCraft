@@ -18,7 +18,7 @@
                                 <h5 class="card-title">{{ $produit->nom }}</h5>
                                 <p class="card-text">{{ $produit->description }}</p>
                                 <p class="card-text">Prix: {{ number_format($produit->prix, 2) }} €</p>
-                                <a href="{{ route('produit.show', $produit->id) }}" class="btn btn-primary">Acheter</a>
+                                <a href="{{ route('produit.show', $produit->id) }}" class="btn btn-success">Acheter</a>
                             </div>
                         </div>
                     </div>

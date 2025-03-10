@@ -2,7 +2,6 @@
     <div class="container">
         <div class="container my-5 position-relative">
             <a href="{{ route('categorie.index') }}" class="btn position-absolute start-0" style="top: -10px; background-color: #a3e4a1; color: #155724; border: 1px solid #81d48a;">Retour</a>
-
             <h1 class="text-center my-4">Panier</h1>
         </div>
         @if(session('success'))

@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="container my-5">
         <div class="container my-5 position-relative">
-            <a href="{{ route('categorie.index') }}" class="btn btn-secondary position-absolute start-0" style="top: -10px;">Retour</a>
+            <a href="{{ route('categorie.index') }}" class="btn position-absolute start-0" style="top: -10px; background-color: #a3e4a1; color: #155724; border: 1px solid #81d48a;">Retour</a>
             <h1 class="text-center my-5 py-4">{{ $produit->nom }}</h1>
             <div class="row">
                 <div class="col-md-6">
@@ -20,7 +20,7 @@
                         @csrf
                         <input type="hidden" name="produit_id" value="{{ $produit->id }}">
                         <input type="number" name="quantity" placeholder="Quantité ?" class="form-control mb-2" min="0" max="10">
-                        <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+                        <button type="submit" class="btn btn-success">Ajouter au panier</button>
                     </form>
                 </div>
             </div>
