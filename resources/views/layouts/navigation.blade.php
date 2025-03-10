@@ -22,7 +22,7 @@
             <a href="{{ route('register') }}" class="text-white mx-3 hover:underline">S'inscrire</a>
         @endguest
         @auth
-            <form method="POST" action="{{ route('logout') }}">
+            <form method="POST" action="{{ route('logout') }}" class="mt-3">
                 @csrf
                 <button type="submit" class="text-white mx-3 hover:underline">Déconnexion</button>
             </form>
