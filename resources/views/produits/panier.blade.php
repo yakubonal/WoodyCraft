@@ -71,10 +71,9 @@
                 @endforeach
             </div>
         </div>
-        <a href="{{ route('lesproduits.index') }}" class="btn btn-secondary mt-4">Retour</a>
         <!-- Nouveau bouton pour aller à la page d'adresse avant le paiement -->
         <div class="d-flex justify-content-between align-items-center mt-4">
-            <a href="{{ route('lesproduits.index') }}" class="btn btn-secondary">Retour</a>
+            <a href="{{ route('categorie.index') }}" class="btn btn-secondary">Retour</a>
             <a href="{{ route('adresse.index') }}" class="btn btn-secondary mt-4">Procéder au paiement</a>
         </div>
     </div>

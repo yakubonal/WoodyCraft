@@ -10,17 +10,6 @@ use App\Http\Controllers\CommandeController;
 
 use App\Http\Controllers\PaiementController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Ici, vous pouvez enregistrer les routes web pour votre application.
-| Ces routes sont chargées par le RouteServiceProvider et toutes
-| seront assignées au groupe de middleware "web". Créez quelque chose de grand !
-|
-*/
-
 // Route pour la page d'accueil
 Route::get('/', function () {
     return view('accueil'); // Retourne la vue 'accueil' lorsque la route est accédée
@@ -54,8 +43,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
-    // Ajoutez ici d'autres routes admin si nécessaire
 });
-
 
 require __DIR__.'/auth.php'; // Charge les routes d'authentification
