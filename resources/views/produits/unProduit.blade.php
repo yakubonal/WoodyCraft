@@ -19,11 +19,31 @@
                     <form method="POST" action="{{ route('panier.ajout') }}">
                         @csrf
                         <input type="hidden" name="produit_id" value="{{ $produit->id }}">
-                        <input type="number" name="quantity" placeholder="Quantité ?" class="form-control mb-2" min="0" max="10">
-                        <button type="submit" class="btn btn-success">Ajouter au panier</button>
+                        <input type="number" name="quantity" id="quantity" placeholder="Quantité ?" class="form-control mb-2" min="0" max="10">
+                        <button type="submit" id="addToCartBtn" class="btn btn-success" disabled>Ajouter au panier</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Sélectionner l'input quantity et le bouton
+        const quantityInput = document.getElementById('quantity');
+        const addToCartBtn = document.getElementById('addToCartBtn');
+
+        // Désactiver ou activer le bouton en fonction de la quantité
+        quantityInput.addEventListener('input', function() {
+            if (quantityInput.value > 0) {
+                addToCartBtn.disabled = false; // Activer le bouton si la quantité est supérieure à 0
+            } else {
+                addToCartBtn.disabled = true; // Désactiver le bouton si la quantité est 0 ou moins
+            }
+        });
+
+        // Initialiser l'état du bouton au chargement de la page
+        if (quantityInput.value <= 0) {
+            addToCartBtn.disabled = true; // Assurez-vous que le bouton est désactivé par défaut
+        }
+    </script>
 </x-app-layout>

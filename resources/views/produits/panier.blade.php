@@ -74,7 +74,7 @@
         </div>
         <!-- Bouton pour aller à la page d'adresse avant le paiement -->
         <div class="d-flex justify-content-end mt-2 mb-5">
-            <a href="{{ route('adresse.index') }}" class="btn btn-success">Procéder au paiement</a>
-        </div>        
+            <a href="{{ route('adresse.index') }}" class="btn btn-success {{ $produits->isEmpty() ? 'disabled' : '' }}">Procéder au paiement</a>
+        </div>          
     </div>
 </x-app-layout>
