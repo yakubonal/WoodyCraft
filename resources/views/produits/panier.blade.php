@@ -20,6 +20,12 @@
 
         <div class="row">
             <div class="col s12 cards-container">
+                @if(isset($message))
+                <div class="alert alert-warning text-center">
+                    {{ $message }}
+                </div>
+                @endif
+
                 @foreach ($produits as $produit)
                     <div class="card mb-4">
                         <div class="row g-0 d-flex align-items-center">

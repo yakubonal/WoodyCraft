@@ -32,7 +32,6 @@ class PanierController extends Controller
                 ]);
             }
         }
-
         return $panier;
     }
 
@@ -41,12 +40,19 @@ class PanierController extends Controller
     {
         $panier = $this->get_panier($request);
 
+        if (!$panier) {
+            return view('produits.panier', ['produits' => [], 'message' => 'Votre panier est vide.']);
+        }
+
         // Obtention de la liste des produits du panier
         $produits = Produit::join('article_panier', 'article_panier.produit_id', '=', 'produit.id')
         ->where('article_panier.panier_id', $panier->id)
         ->get(['produit.*', 'article_panier.quantity as quantity']);
 
-        return view('produits/panier', ['produits' => $produits]);
+        return view('produits.panier', [
+        'produits' => $produits,
+        'message' => $produits->isEmpty() ? 'Votre panier est vide.' : null
+        ]);
     }
 
     // Fonction qui permet d'ajouter un produit au panier
