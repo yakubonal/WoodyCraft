@@ -146,7 +146,7 @@ class PanierController extends Controller
         if ($article) {
             // Supprimer l'article du panier
             $article->delete();
-            return redirect()->back()->with('success', 'Produit supprimé du panier.');
+            return redirect()->back()->with('error', 'Produit supprimé du panier.');
         }
 
         return redirect()->back()->with('error', 'Produit non trouvé dans le panier.');
