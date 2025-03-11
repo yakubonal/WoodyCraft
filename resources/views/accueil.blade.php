@@ -1,18 +1,18 @@
-<head>
-    <style>
-        .bg-image {
-            background-image: url({{ asset('images/fond.jpg') }});
-            background-size: cover; /* Couvre toute la zone sans déformation */
-            background-position: center; /* Centre l'image dans le conteneur */
-            background-repeat: no-repeat; /* Empêche l'image de se répéter */
-            height: 300px; /* Hauteur du conteneur */
-            background-color: rgba(0, 0, 0, 0.5); /* Filtre noir */
-            background-blend-mode: darken; /* Mélange l'image avec le noir */
-        }
-    </style>
-</head>
-
 <x-app-layout>
+    <head>
+        <style>
+            .bg-image {
+                background-image: url({{ asset('images/fond.jpg') }});
+                background-size: cover; /* Couvre toute la zone sans déformation */
+                background-position: center; /* Centre l'image dans le conteneur */
+                background-repeat: no-repeat; /* Empêche l'image de se répéter */
+                height: 300px; /*Hauteur du conteneur*/
+                background-color: rgba(0, 0, 0, 0.5); /* Filtre noir */
+                background-blend-mode: darken; /* Mélange l'image avec le noir */
+            }
+        </style>
+    </head>
+
     <div class="bg-image d-flex justify-content-center align-items-center">
         <h1 class="display-3 text-white">WoodyCraft4Shop</h1> <!-- Utilisation de la classe display-1 pour agrandir le texte -->
     </div>
