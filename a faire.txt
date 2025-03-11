@@ -5,5 +5,3 @@ Generer un cheque en utilisant le package installer avec les donnees du client
 Si paiement alors panier passe dans commande (base de donnee)
 
 Ajouter les categorie dans les produits comme sur la page d'accueil
-
-Ajouter une image pour les produits
