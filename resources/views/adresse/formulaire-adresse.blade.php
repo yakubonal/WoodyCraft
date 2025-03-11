@@ -45,7 +45,7 @@
             </div>
             <div class="form-group mb-3">
                 <label for="code_postal">Code Postal :</label>
-                <input type="text" name="code_postal" class="form-control" id="code_postal" required>
+                <input type="text" name="code_postal" class="form-control" id="code_postal" required pattern="[0-9]+" title="Veuillez entrer uniquement des chiffres">
             </div>
             <div class="form-group mb-3">
                 <label for="pays">Pays :</label>
