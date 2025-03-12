@@ -30,17 +30,16 @@ class PaiementController extends Controller
             $session_id = $request->session()->getId();
             $panier = Panier::where('session_id', $session_id)->first();
 
-            // Si le panier n'existe pas, on le créé
+            // Si le panier n'existe pas, on redirige à la dernière page
             if ($panier === null) {
-                $panier = Panier::create([
-                    'session_id' => $session_id,
-                ]);
+                return redirect()->back();
             }
         }
 
         // Ajouter le contenu du panier à la table "Commandes"
         Commande::create([
             'user' => $user,
+            'panier' => $panier,
         ]);
 
         // Vider le panier de l'utilisateur

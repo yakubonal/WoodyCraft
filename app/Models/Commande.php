@@ -18,11 +18,6 @@ class Commande extends Model
         'montant_total',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(user::class);
-    }
-
     public function panier()
     {
         return $this->hasOne(Panier::class, 'panier_id');
