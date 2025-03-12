@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class PanierController extends Controller
 {
     // Obtient le panier s'il existe, sinon le créé
-    public function get_panier(Request $request)
+    public static function get_panier(Request $request)
     {
         // Obtention de l'id de l'utilisateur connecté
         $user = auth()->user();
@@ -35,6 +35,25 @@ class PanierController extends Controller
         return $panier;
     }
 
+    // Calcule le prix total du contenu d'un panier
+    public static function get_total(Panier $panier)
+    {
+        // Obtention de tous les articles avec le panier_id qu'on cherche
+        $articles = ArticlePanier::where('panier_id', $panier->id)->get();
+
+        $total = 0.0;
+
+        // Pour chaque ArticlePanier, on obtient sa quantité et son Produit (pour avoir son prix)
+        foreach ($articles as $article) {
+            $prix = Produit::findOrFail($article->produit_id)->prix;
+
+            // Ajout au total de la quantité * le prix individuel de chaque produit
+            $total += $article->quantity * $prix;
+        }
+
+        return $total;
+    }
+
     // Affiche le contenu du panier
     public function index(Request $request)
     {
@@ -51,7 +70,8 @@ class PanierController extends Controller
 
         return view('produits.panier', [
         'produits' => $produits,
-        'message' => $produits->isEmpty() ? 'Votre panier est vide.' : null
+        'message' => $produits->isEmpty() ? 'Votre panier est vide.' : null,
+        'total' => $this->get_total($panier),
         ]);
     }
 

@@ -12,6 +12,8 @@ class Commande extends Model
     protected $table = 'commande';
 
     protected $fillable = [
+        'panier_id',
+        'adresse_id',
         'date',
         'statut',
         'type_paiement',

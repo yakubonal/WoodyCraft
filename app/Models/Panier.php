@@ -18,5 +18,6 @@ class Panier extends Model
      */
     protected $fillable = [
         'session_id',
+        'adresse_id',
     ];
 }

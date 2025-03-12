@@ -45,6 +45,11 @@ class AdresseController extends Controller
             $user->save();
         }
 
+        // On associe l'adresse au panier si l'utilisateur n'a pas de compte
+        $panier = PanierController::get_panier($request);
+        $panier->adresse_id = $adresse->id;
+        $panier->save();
+
         return redirect()->route('paiement.index', ['adresse' => $adresse->id]);
     }
 }

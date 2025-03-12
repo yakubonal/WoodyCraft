@@ -15,6 +15,7 @@ return new class extends Migration // Début de la définition de la migration
         Schema::create('panier', function (Blueprint $table) { // Création de la table 'panier'
             $table->id(); // Création de la colonne 'id' (clé primaire, auto-increment)
             $table->string("session_id")->nullable(); // Colonne qui stocke l'id de session si le panier appartient à un invité
+            $table->foreignId("adresse_id")->nullable()->constrained('adresses'); // Création de la colonne 'adresse_id' comme clé étrangère vers la table 'adresse'
             $table->timestamps(); // Création des colonnes 'created_at' et 'updated_at' pour gérer les timestamps
         });
     }

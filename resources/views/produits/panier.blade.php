@@ -78,9 +78,13 @@
                 @endforeach
             </div>
         </div>
+        <!-- Affichage du total -->
+        <div class="d-flex justify-content-end mt-2 mb-5">
+            <p class="card">Total : {{ number_format($total, 2) }}€</p>
+        </div>
         <!-- Bouton pour aller à la page d'adresse avant le paiement -->
         <div class="d-flex justify-content-end mt-2 mb-5">
             <a href="{{ route('adresse.index') }}" class="btn btn-success {{ $produits->isEmpty() ? 'disabled' : '' }}">Procéder au paiement</a>
-        </div>          
+        </div>
     </div>
 </x-app-layout>

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Adresse;
 use App\Models\Commande;
 use App\Models\Panier;
+use App\Http\Controllers\PanierController;
+use App\Models\ArticlePanier;
+use DateTime;
 
 class PaiementController extends Controller
 {
@@ -16,33 +19,25 @@ class PaiementController extends Controller
 
     public function paypal(Request $request)
     {
-        // Obtention de l'id de l'utilisateur connecté
-        $user = auth()->user();
+        // Obtention du panier
+        $panier = PanierController::get_panier($request);
 
-        // Si l'user est connecté
-        if (! is_null($user))
-        {
-            $panier = Panier::findOrFail($user->panier_id);
-        }
-        // Si l'user n'est pas connecté (invité)
-        else
-        {
-            $session_id = $request->session()->getId();
-            $panier = Panier::where('session_id', $session_id)->first();
-
-            // Si le panier n'existe pas, on redirige à la dernière page
-            if ($panier === null) {
-                return redirect()->back();
-            }
-        }
+        // Obtention du montant total du panier
+        $total = PanierController::get_total($panier);
 
         // Ajouter le contenu du panier à la table "Commandes"
         Commande::create([
-            'user' => $user,
-            'panier' => $panier,
+            'panier_id' => $panier->id,
+            'adresse_id' => $panier->adresse_id,
+            'statut' => "ok",
+            'type_paiement' => "paypal",
+            'montant_total' => $total,
+            'date' => new DateTime(),
         ]);
 
-        // Vider le panier de l'utilisateur
+        // Supprimer les articles du panier de l'utilisateur
+        ArticlePanier::where('panier_id', $panier->id)->delete();
+
         // Logique PayPal à implémenter
         return redirect('https://www.paypal.com');
     }
