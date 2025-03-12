@@ -11,23 +11,25 @@ class Commande extends Model
 
     protected $table = 'commande';
 
+    protected $fillable = [
+        'date',
+        'statut',
+        'type_paiement',
+        'montant_total',
+    ];
+
     public function user()
     {
         return $this->belongsTo(user::class);
     }
 
-    public function adresseLivraison()
+    public function panier()
     {
-        return $this->belongsTo(Adresse::class, 'adresse_livraison_id');
+        return $this->hasOne(Panier::class, 'panier_id');
     }
 
-    public function adresseFacturation()
+    public function adresse()
     {
-        return $this->belongsTo(Adresse::class, 'adresse_facturation_id');
-    }
-
-    public function paiement()
-    {
-        return $this->hasOne(Paiement::class);
+        return $this->hasOne(Adresse::class, 'adresse_id');
     }
 }

@@ -16,8 +16,7 @@ return new class extends Migration // Début de la définition de la migration
             $table->id(); // Création de la colonne 'id' (clé primaire, auto-increment)
             $table->foreignId('user_id')->constrained('user')->onDelete('cascade'); // Création de la colonne 'user_id' comme clé étrangère vers la table 'user'. Supprime la commande si l'user est supprimé.
             $table->foreignId('panier_id')->constrained('panier')->onDelete('cascade'); // Création de la colonne 'panier_id' comme clé étrangère vers la table 'panier'. Supprime la commande si le panier est supprimé.
-            $table->foreignId('adresse_livraison_id')->constrained('adresse')->onDelete('cascade'); // Création de la colonne 'adresse_livraison_id' comme clé étrangère vers la table 'adresse'. Supprime la commande si l'adresse de livraison est supprimée.
-            $table->foreignId('adresse_facturation_id')->constrained('adresse')->onDelete('cascade'); // Création de la colonne 'adresse_facturation_id' comme clé étrangère vers la table 'adresse'. Supprime la commande si l'adresse de facturation est supprimée.
+            $table->foreignId('adresse_id')->constrained('adresse')->onDelete('cascade'); // Création de la colonne 'adresse_id' comme clé étrangère vers la table 'adresse'. Supprime la commande si l'adresse de livraison est supprimée.
             $table->dateTime('date'); // Création de la colonne 'date' pour stocker la date et l'heure de la commande
             $table->string('statut'); // Création de la colonne 'statut' pour stocker le statut de la commande (ex: en traitement, expédiée, livrée, etc.)
             $table->string('type_paiement'); // Création de la colonne 'type_paiement' pour stocker le type de paiement (chèque / paypal)
