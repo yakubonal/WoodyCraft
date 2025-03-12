@@ -76,6 +76,9 @@ class PaiementController extends Controller
             'articles' => $data,
         ]);
 
+        // Supprimer les articles du panier de l'utilisateur
+        ArticlePanier::where('panier_id', $panier->id)->delete();
+
         return $pdf->stream('facture.pdf');
     }
 }

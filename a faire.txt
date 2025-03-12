@@ -1,4 +1,2 @@
-- Ajouter le prix total dans la page paiement
-- Generer un cheque en utilisant le package installer avec les donnees du client
 - Ajouter les categorie dans les produits comme sur la page d'accueil
 - Test par controller
