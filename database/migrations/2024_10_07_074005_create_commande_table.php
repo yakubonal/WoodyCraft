@@ -20,9 +20,10 @@ return new class extends Migration // Début de la définition de la migration
             $table->foreignId('adresse_facturation_id')->constrained('adresse')->onDelete('cascade'); // Création de la colonne 'adresse_facturation_id' comme clé étrangère vers la table 'adresse'. Supprime la commande si l'adresse de facturation est supprimée.
             $table->dateTime('date'); // Création de la colonne 'date' pour stocker la date et l'heure de la commande
             $table->string('statut'); // Création de la colonne 'statut' pour stocker le statut de la commande (ex: en traitement, expédiée, livrée, etc.)
+            $table->string('type_paiement'); // Création de la colonne 'type_paiement' pour stocker le type de paiement (chèque / paypal)
             $table->decimal('montant_total', 8, 2); // Création de la colonne 'montant_total' pour stocker le montant total de la commande
             $table->timestamps(); // Création des colonnes 'created_at' et 'updated_at' pour gérer les timestamps
-        });        
+        });
     }
 
     /**

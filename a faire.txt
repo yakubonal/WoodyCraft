@@ -1,8 +1,5 @@
-Ajouter le prix total dans la page paiement et panier
-
-Si paiement alors panier passe dans commande (base de donnee)
-Generer un cheque en utilisant le package installer avec les donnees du client 
-
-Ajouter les categorie dans les produits comme sur la page d'accueil
-
-Test par controller
+- Si paiement alors panier passe dans commande (base de donnee)
+- Ajouter le prix total dans la page paiement et panier
+- Generer un cheque en utilisant le package installer avec les donnees du client
+- Ajouter les categorie dans les produits comme sur la page d'accueil
+- Test par controller
