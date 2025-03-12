@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\CategorieController;
@@ -31,9 +30,6 @@ Route::delete('/panier/{produit}/supprimer', [PanierController::class, 'supprime
 
 Route::get('/adresse', [AdresseController::class, 'index'])->name('adresse.index');
 Route::post('/adresse', [AdresseController::class, 'store'])->name('adresse.store');
-
-// Route pour générer un PDF d'un post spécifique
-Route::get('/posts/{post}/pdf', [PostController::class, 'getPostPdf']); // Appelle la méthode pour générer un PDF du post
 
 Route::get('/paiement/{adresse}', [PaiementController::class, 'index'])->name('paiement.index');
 Route::post('/paiement/paypal', [PaiementController::class, 'paypal'])->name('paiement.paypal');

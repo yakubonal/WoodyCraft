@@ -8,6 +8,8 @@ use App\Models\Commande;
 use App\Models\Panier;
 use App\Http\Controllers\PanierController;
 use App\Models\ArticlePanier;
+use App\Models\Produit;
+use Barryvdh\DomPDF\Facade\Pdf;
 use DateTime;
 
 class PaiementController extends Controller
@@ -44,7 +46,36 @@ class PaiementController extends Controller
 
     public function cheque(Request $request)
     {
-        // Logique paiement par chèque à implémenter
-        return redirect()->back()->with('success', 'Instructions pour le paiement par chèque...');
+        // Obtention du panier
+        $panier = PanierController::get_panier($request);
+
+        // Obtention du montant total du panier
+        $total = PanierController::get_total($panier);
+
+        // Obtention des articles du panier
+        $articles_panier = ArticlePanier::where('panier_id', $panier->id)->get();
+        $data = [];
+
+        foreach ($articles_panier as $article) {
+            // Obtention du produit associé à l'article panier
+            $p = Produit::findOrFail($article->produit_id);
+
+            // Ajout du produit
+            $element = [
+                "nom" => $p->nom,
+                "quantite" => $article->quantity,
+                "prix" => $p->prix,
+            ];
+
+            array_push($data, $element);
+        }
+
+        // Charger la vue Blade avec le contenu de la facture
+        $pdf = Pdf::loadView('pdf.facture', [
+            'total' => $total,
+            'articles' => $data,
+        ]);
+
+        return $pdf->stream('facture.pdf');
     }
 }
