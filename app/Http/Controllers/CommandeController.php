@@ -13,7 +13,7 @@ class CommandeController extends Controller
 
         // Vérifier si l'adresse est valide
         if (!$adresse || $adresse->user_id !== auth()->id()) {
-            return redirect()->route('adresses.index')->with('error', 'Adresse non valide.');
+            return redirect()->route('adresse.index')->with('error', 'Adresse non valide.');
         }
 
         // Ici, tu gères le processus de paiement

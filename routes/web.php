@@ -41,4 +41,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     })->name('admin.dashboard');
 });
 
+Route::post('/commande/payer', [CommandeController::class, 'payer'])->name('commande.payer');
+
 require __DIR__.'/auth.php'; // Charge les routes d'authentification

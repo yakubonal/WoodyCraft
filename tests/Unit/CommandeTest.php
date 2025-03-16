@@ -1,20 +1,31 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
+use App\Models\Adresse;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\Request;
 use Tests\TestCase;
 
 class CommandeTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
-    {
-        $response = $this->get('/');
+    use RefreshDatabase;
 
-        $response->assertStatus(200);
+    /** @test */
+    public function it_redirects_to_adresses_index_if_adresse_does_not_exist()
+    {
+        // Création d'un utilisateur
+        $user = User::factory()->create();
+
+        // Simule l'authentification
+        $this->actingAs($user);
+
+        // Effectue une requête avec un adresse_id inexistant
+        $response = $this->post(route('commande.payer'), ['adresse_id' => 999]);
+
+        // Vérifie la redirection et le message d'erreur
+        $response->assertRedirect(route('adresse.index'));
+        $response->assertSessionHas('error', 'Adresse non valide.');
     }
 }
