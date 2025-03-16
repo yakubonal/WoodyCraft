@@ -13,12 +13,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Création d'un user par défaut
+
+        $adresse = \App\Models\Adresse::create([
+            'rue' => '123 Rue de la Liberté',
+            'ville' => 'Paris',
+            'code_postal' => '75001',
+            'pays' => 'France',
+        ]);
+
+        // Création de l'utilisateur avec l'ID de l'adresse
         \App\Models\User::factory()->create([
-            'name' => "Yakub",
-            'email' => "a@a.a",
-            'password' => Hash::make("azer"),
+            'name' => "Sarah",
+            'email' => "sarah75@gmail.com",
+            'password' => Hash::make("sarah75"),
             'is_admin' => 0,
+            'adresse_id' => $adresse->id,
         ]);
 
         // Création des catégories par défaut
