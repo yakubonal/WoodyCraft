@@ -76,6 +76,16 @@ class PaiementController extends Controller
             'articles' => $data,
         ]);
 
+        // Ajouter le contenu du panier à la table "Commandes"
+        Commande::create([
+            'panier_id' => $panier->id,
+            'adresse_id' => $panier->adresse_id,
+            'statut' => "ok",
+            'type_paiement' => "cheque",
+            'montant_total' => $total,
+            'date' => new DateTime(),
+        ]);
+
         // Supprimer les articles du panier de l'utilisateur
         ArticlePanier::where('panier_id', $panier->id)->delete();
 
