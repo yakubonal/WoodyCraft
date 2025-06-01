@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'panier_id',
+        'wishlist_id',
         'adresse_id',
         'password',
         'is_admin',
@@ -59,6 +60,15 @@ class User extends Authenticatable
     public function panier()
     {
         return $this->belongsTo(Panier::class, 'panier_id');
+    }
+
+    /**
+     * Relation avec wishlist.
+     * Un utilisateur appartient à une wishlist.
+     */
+    public function wishlist()
+    {
+        return $this->belongsTo(Wishlist::class, 'wishlist_id');
     }
 
     /**

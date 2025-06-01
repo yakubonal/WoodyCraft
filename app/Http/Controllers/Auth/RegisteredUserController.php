@@ -37,14 +37,12 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        // Création du panier du futur utilisateur
-        $panier = Panier::create();
-
-        $user = User::create([
+        // Création de l'utilisateur avec l'ID de l'adresse
+        $user = User::factory()->create([
             'name' => $request->name,
             'email' => $request->email,
-            'panier_id' => $panier->id,
             'password' => Hash::make($request->password),
+            'is_admin' => 0,
         ]);
 
         event(new Registered($user));

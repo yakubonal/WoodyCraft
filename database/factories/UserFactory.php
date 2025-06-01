@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\Panier;
+use App\Models\Wishlist;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -25,6 +26,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         $panier = Panier::create();
+        $wishlist = Wishlist::create();
 
         return [
             'name' => fake()->name(),
@@ -33,6 +35,7 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
             'panier_id' => $panier->id,
+            'wishlist_id' => $wishlist->id,
         ];
     }
 

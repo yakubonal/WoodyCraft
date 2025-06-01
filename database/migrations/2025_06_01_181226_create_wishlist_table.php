@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::create('wishlist', function (Blueprint $table) {
             $table->id();
             $table->string("session_id")->nullable();
-            $table->foreignId("adresse_id")->nullable()->constrained('adresses');
             $table->timestamps();
         });
     }
