@@ -36,7 +36,7 @@ class WishlistController extends Controller
         return $wishlist;
     }
 
-    // Affiche le contenu du wishlist
+    // Affiche le contenu de la wishlist
     public function index(Request $request)
     {
         $wishlist = $this->get_wishlist($request);
@@ -45,7 +45,7 @@ class WishlistController extends Controller
             return view('produits.wishlist', ['produits' => [], 'message' => 'Votre wishlist est vide.']);
         }
 
-        // Obtention de la liste des produits du wishlist
+        // Obtention de la liste des produits de la wishlist
         $produits = Produit::join('article_wishlist', 'article_wishlist.produit_id', '=', 'produit.id')
         ->where('article_wishlist.wishlist_id', $wishlist->id)
         ->get(['produit.*', 'article_wishlist.quantity as quantity']);
@@ -79,10 +79,9 @@ class WishlistController extends Controller
             ]);
         }
 
-        // Affichage du wishlist
+        // Affichage de la wishlist
         return redirect('/wishlist');
     }
-
 
     /**
      * Modifier la quantité d'un produit dans la wishlist.
@@ -101,7 +100,7 @@ class WishlistController extends Controller
         // Récupérer la wishlist actuel
         $wishlist = $this->get_wishlist($request);
 
-        // Trouver l'article du wishlist correspondant au produit
+        // Trouver l'article de la wishlist correspondant au produit
         $article = ArticleWishlist::where('produit_id', $produit_id)
             ->where('wishlist_id', $wishlist->id)
             ->first();
@@ -119,6 +118,32 @@ class WishlistController extends Controller
                 $article->save();
                 return redirect()->back()->with('success', 'Quantité mise à jour.');
             }
+        }
+
+        return redirect()->back()->with('error', 'Produit non trouvé dans la wishlist.');
+    }
+
+    /**
+     * Supprimer un produit de la wishlist.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $produit_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function supprimer(Request $request, $produit_id)
+    {
+        // Récupérer la wishlist actuel
+        $wishlist = $this->get_wishlist($request);
+
+        // Trouver l'article de la wishlist correspondant au produit
+        $article = Articlewishlist::where('produit_id', $produit_id)
+            ->where('wishlist_id', $wishlist->id)
+            ->first();
+
+        if ($article) {
+            // Supprimer l'article de la wishlist
+            $article->delete();
+            return redirect()->back()->with('error', 'Produit supprimé de la wishlist.');
         }
 
         return redirect()->back()->with('error', 'Produit non trouvé dans la wishlist.');

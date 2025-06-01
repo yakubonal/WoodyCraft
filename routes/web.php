@@ -33,6 +33,8 @@ Route::delete('/panier/{produit}/supprimer', [PanierController::class, 'supprime
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
 Route::post('/wishlist', [WishlistController::class, 'ajout'])->name('wishlist.ajout');
 Route::patch('/wishlist/{produit}/modifier', [WishlistController::class, 'modifier'])->name('wishlist.modifier');
+Route::delete('/wishlist/{produit}/supprimer', [WishlistController::class, 'supprimer'])->name('wishlist.supprimer');
+
 
 Route::get('/adresse', [AdresseController::class, 'index'])->name('adresse.index');
 Route::post('/adresse', [AdresseController::class, 'store'])->name('adresse.store');
