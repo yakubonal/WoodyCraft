@@ -42,8 +42,24 @@
                                     <p class="card-text">{{ $produit->description }}</p>
                                     <p class="card-text">Prix : {{ number_format($produit->prix, 2) }} €</p>
                                     <div class="d-flex align-items-center mb-3">
+                                        <!-- Formulaire pour diminuer la quantité -->
+                                        <form action="{{ route('wishlist.modifier', $produit->id) }}" method="POST" class="me-2 mr-2">
+                                            @csrf
+                                            @method('PATCH')
+                                            <input type="hidden" name="quantity" value="-1">
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary">-</button>
+                                        </form>
+
                                         <!-- Affichage de la quantité -->
                                         <span>{{ $produit->quantity }}</span>
+
+                                        <!-- Formulaire pour augmenter la quantité -->
+                                        <form action="{{ route('wishlist.modifier', $produit->id) }}" method="POST" class="ms-2">
+                                            @csrf
+                                            @method('PATCH')
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary">+</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

@@ -82,4 +82,45 @@ class WishlistController extends Controller
         // Affichage du wishlist
         return redirect('/wishlist');
     }
+
+
+    /**
+     * Modifier la quantité d'un produit dans la wishlist.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $produit_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function modifier(Request $request, $produit_id)
+    {
+        // Validation des données entrantes
+        $request->validate([
+            'quantity' => 'required|integer',
+        ]);
+
+        // Récupérer la wishlist actuel
+        $wishlist = $this->get_wishlist($request);
+
+        // Trouver l'article du wishlist correspondant au produit
+        $article = ArticleWishlist::where('produit_id', $produit_id)
+            ->where('wishlist_id', $wishlist->id)
+            ->first();
+
+        if ($article) {
+            // Modifier la quantité
+            $article->quantity += $request->quantity;
+
+            if ($article->quantity < 1) {
+                // Supprimer l'article si la quantité est inférieure à 1
+                $article->delete();
+                return redirect()->back()->with('success', 'Produit supprimé de la wishlist.');
+            } else {
+                // Sauvegarder les modifications
+                $article->save();
+                return redirect()->back()->with('success', 'Quantité mise à jour.');
+            }
+        }
+
+        return redirect()->back()->with('error', 'Produit non trouvé dans la wishlist.');
+    }
 }
