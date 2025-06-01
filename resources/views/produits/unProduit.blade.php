@@ -21,7 +21,7 @@
                         <input type="hidden" name="produit_id" value="{{ $produit->id }}">
                         <input type="number" name="quantity" id="quantity" placeholder="Quantité ?" class="form-control mb-2" min="0" max="10">
                         <button type="submit" id="addToCartBtn" class="btn btn-success" formaction="{{ route('panier.ajout') }}">Ajouter au panier</button>
-                        <button type="submit" id="addToWishlistBtn" class="btn btn-success" formaction="{{ route('wishlist.ajout') }}">Ajouter au wishlist</button>
+                        <button type="submit" id="addToWishlistBtn" class="btn btn-success" formaction="{{ route('wishlist.ajout') }}">Ajouter à la wishlist</button>
                     </form>
                 </div>
             </div>

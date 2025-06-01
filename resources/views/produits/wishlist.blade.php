@@ -46,7 +46,7 @@
                                     <p class="card-text">Prix : {{ number_format($produit->prix, 2) }} €</p>
                                     <div class="d-flex align-items-center mb-3">
                                         <!-- Formulaire pour diminuer la quantité -->
-                                        <form action="{{ route('wishlist.modifier', $produit->id) }}" method="POST"
+                                        <form method="POST" action="{{ route('wishlist.modifier', $produit->id) }}"
                                             class="me-2 mr-2">
                                             @csrf
                                             @method('PATCH')
@@ -58,7 +58,7 @@
                                         <span>{{ $produit->quantity }}</span>
 
                                         <!-- Formulaire pour augmenter la quantité -->
-                                        <form action="{{ route('wishlist.modifier', $produit->id) }}" method="POST"
+                                        <form method="POST" action="{{ route('wishlist.modifier', $produit->id) }}"
                                             class="ms-2">
                                             @csrf
                                             @method('PATCH')
@@ -68,14 +68,24 @@
                                     </div>
 
                                     <!-- Formulaire pour supprimer le produit -->
-                                    <form action="{{ route('wishlist.supprimer', $produit->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit de la wishlist ?');">
-                                            <i class="fa fa-trash"></i> Supprimer
-                                        </button>
-                                    </form>
+                                    <div class="flex">
+                                        <div class="mr-3">
+                                            <form method="POST" action="{{ route('wishlist.supprimer', $produit->id) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger"
+                                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit de la wishlist ?');">
+                                                    <i class="fa fa-trash"></i> Supprimer
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <!-- Formulaire pour déplacer le produit vers le panier -->
+                                        <form method="POST" action="{{ route('wishlist.deplacer', $produit->id) }}">
+                                            @csrf
+                                            <button type="submit" id="addToCartBtn" class="btn btn-sm btn-success">
+                                                <i class="fa fa-shopping-cart"></i>  Ajouter au panier</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

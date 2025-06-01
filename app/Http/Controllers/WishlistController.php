@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ArticlePanier;
 use App\Models\ArticleWishlist;
 use Illuminate\Http\Request;
 use App\Models\Wishlist;
@@ -56,7 +57,7 @@ class WishlistController extends Controller
         ]);
     }
 
-    // Fonction qui permet d'ajouter un produit au wishlist
+    // Fonction qui permet d'ajouter un produit à la wishlist
     public function ajout(Request $request)
     {
         $wishlist = $this->get_wishlist($request);
@@ -136,7 +137,7 @@ class WishlistController extends Controller
         $wishlist = $this->get_wishlist($request);
 
         // Trouver l'article de la wishlist correspondant au produit
-        $article = Articlewishlist::where('produit_id', $produit_id)
+        $article = ArticleWishlist::where('produit_id', $produit_id)
             ->where('wishlist_id', $wishlist->id)
             ->first();
 
@@ -147,5 +148,52 @@ class WishlistController extends Controller
         }
 
         return redirect()->back()->with('error', 'Produit non trouvé dans la wishlist.');
+    }
+
+    /**
+     * Deplacer un article de la wishlist vers le panier.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $produit_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deplacer(Request $request, $produit_id)
+    {
+        // Récupérer la wishlist actuel
+        $wishlist = $this->get_wishlist($request);
+
+        // Trouver l'article de la wishlist correspondant au produit
+        $article_wishlist = ArticleWishlist::where('produit_id', $produit_id)
+            ->where('wishlist_id', $wishlist->id)
+            ->first();
+
+        // Obtention du panier de l'utilisateur actuel
+        $panier = PanierController::get_panier($request);
+
+        // Vérification si le produit est déjà dans le panier
+        $article_panier = ArticlePanier::where('produit_id', $produit_id)
+            ->where('panier_id', $panier->id)
+            ->first();
+
+        if ($article_panier) {
+            // Si le produit est déjà dans le panier, on augmente la quantité
+            $article_panier->quantity += $article_wishlist->quantity;
+            $article_panier->save();
+        } else {
+            // Ajout du produit dans le panier associé à l'utilisateur
+            ArticlePanier::create([
+                'produit_id' => Produit::findOrFail($produit_id)->id,
+                'panier_id' => $panier->id,
+                'quantity' => $article_wishlist->quantity,
+            ]);
+        }
+
+        // Supprimer l'article de la wishlist
+        if ($article_wishlist) {
+            $article_wishlist->delete();
+        }
+
+        // Affichage du panier
+        return redirect('/panier');
     }
 }
