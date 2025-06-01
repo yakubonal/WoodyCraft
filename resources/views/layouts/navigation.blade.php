@@ -11,6 +11,10 @@
     </nav>
     <!-- Section pour les boutons de connexion et d'inscription -->
     <div class="d-flex align-items-center">
+        <!-- Lien vers le wishlist avec une icône -->
+        <a href="{{ route('wishlist.index') }}" class="text-white mx-3 hover:underline">
+            <i class="fas fa-heart"></i>
+        </a>
         <!-- Lien vers le panier avec une icône de panier -->
         <a href="{{ route('panier.index') }}" class="text-white mx-3 hover:underline">
             <i class="fas fa-shopping-cart"></i>

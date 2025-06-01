@@ -15,12 +15,13 @@
                     <h5>Description :</h5>
                     <p>{{ $produit->description }}</p>
                     <p><strong>Prix : {{ number_format($produit->prix, 2) }} €</strong></p>
-                    
-                    <form method="POST" action="{{ route('panier.ajout') }}">
+
+                    <form method="POST">
                         @csrf
                         <input type="hidden" name="produit_id" value="{{ $produit->id }}">
                         <input type="number" name="quantity" id="quantity" placeholder="Quantité ?" class="form-control mb-2" min="0" max="10">
-                        <button type="submit" id="addToCartBtn" class="btn btn-success" disabled>Ajouter au panier</button>
+                        <button type="submit" id="addToCartBtn" class="btn btn-success" formaction="{{ route('panier.ajout') }}">Ajouter au panier</button>
+                        <button type="submit" id="addToWishlistBtn" class="btn btn-success" formaction="{{ route('wishlist.ajout') }}">Ajouter au wishlist</button>
                     </form>
                 </div>
             </div>
@@ -31,19 +32,23 @@
         // Sélectionner l'input quantity et le bouton
         const quantityInput = document.getElementById('quantity');
         const addToCartBtn = document.getElementById('addToCartBtn');
+        const addToWishlistBtn = document.getElementById('addToWishlistBtn');
 
         // Désactiver ou activer le bouton en fonction de la quantité
         quantityInput.addEventListener('input', function() {
             if (quantityInput.value > 0) {
-                addToCartBtn.disabled = false; // Activer le bouton si la quantité est supérieure à 0
+                addToCartBtn.disabled = false;
+                addToWishlistBtn.disabled = false; // Activer le bouton si la quantité est supérieure à 0
             } else {
-                addToCartBtn.disabled = true; // Désactiver le bouton si la quantité est 0 ou moins
+                addToCartBtn.disabled = true;
+                addToWishlistBtn.disabled = true; // Désactiver le bouton si la quantité est 0 ou moins
             }
         });
 
         // Initialiser l'état du bouton au chargement de la page
         if (quantityInput.value <= 0) {
-            addToCartBtn.disabled = true; // Assurez-vous que le bouton est désactivé par défaut
+            addToCartBtn.disabled = true;
+            addToWishlistBtn.disabled = true; // Assurez-vous que le bouton est désactivé par défaut
         }
     </script>
 </x-app-layout>

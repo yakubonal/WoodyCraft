@@ -22,13 +22,13 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // Création de l'utilisateur avec l'ID de l'adresse
-        \App\Models\User::factory()->create([
-            'name' => "Sarah",
-            'email' => "sarah75@gmail.com",
-            'password' => Hash::make("sarah75"),
-            'is_admin' => 0,
-            // 'adresse_id' => $adresse->id,
-        ]);
+        // \App\Models\User::factory()->create([
+        //     'name' => "Sarah",
+        //     'email' => "sarah75@gmail.com",
+        //     'password' => Hash::make("sarah75"),
+        //     'is_admin' => 0,
+        //     // 'adresse_id' => $adresse->id,
+        // ]);
 
         // Création des catégories par défaut
         \App\Models\Categorie::create([

@@ -8,6 +8,7 @@ use App\Http\Controllers\AdresseController;
 use App\Http\Controllers\CommandeController;
 
 use App\Http\Controllers\PaiementController;
+use App\Http\Controllers\WishlistController;
 
 // Route pour la page d'accueil
 Route::get('/', function () {
@@ -27,6 +28,10 @@ Route::get('/panier', [PanierController::class, 'index'])->name('panier.index');
 Route::post('/panier', [PanierController::class, 'ajout'])->name('panier.ajout'); // Appelle la méthode 'ajout' du PanierController
 Route::patch('/panier/{produit}/modifier', [PanierController::class, 'modifier'])->name('panier.modifier');
 Route::delete('/panier/{produit}/supprimer', [PanierController::class, 'supprimer'])->name('panier.supprimer');
+
+// Route pour la wishlist
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+Route::post('/wishlist', [WishlistController::class, 'ajout'])->name('wishlist.ajout');
 
 Route::get('/adresse', [AdresseController::class, 'index'])->name('adresse.index');
 Route::post('/adresse', [AdresseController::class, 'store'])->name('adresse.store');

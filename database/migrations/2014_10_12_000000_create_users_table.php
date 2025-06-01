@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->foreignId('panier_id')->constrained('panier')->onDelete('cascade'); // Création de la colonne 'panier_id' comme clé étrangère vers la table 'panier'. Si l'user est supprimé, le panier sera également supprimé.
+            $table->foreignId('wishlist_id')->constrained('wishlist')->onDelete('cascade');
             $table->foreignId('adresse_id')->nullable()->constrained('adresses');
             $table->timestamps();
         });
