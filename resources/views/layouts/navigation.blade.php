@@ -6,8 +6,12 @@
         <a href="{{ route('categorie.index') }}" class="text-white mx-3 hover:underline">WoodyCraft4Shop</a>
         <!-- Lien vers la page d'accueil -->
         <a href="{{ route('categorie.index') }}" class="text-white mx-3 hover:underline">Accueil</a>
-        <!-- Lien vers la page des lesproduits -->
+        <!-- Lien vers la page des produits -->
         <a href="{{ route('lesproduits.index') }}" class="text-white mx-3 hover:underline">Les produits</a>
+        @auth
+            <!-- Lien vers la page des commandes -->
+            <a href="{{ route('commande.index') }}" class="text-white mx-3 hover:underline">Mes commandes</a>
+        @endauth
     </nav>
     <!-- Section pour les boutons de connexion et d'inscription -->
     <div class="d-flex align-items-center">
@@ -26,7 +30,7 @@
             <a href="{{ route('register') }}" class="text-white mx-3 hover:underline">S'inscrire</a>
         @endguest
         @auth
-            <form method="POST" action="{{ route('logout') }}" >
+            <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit" class="text-white hover:underline">Déconnexion</button>
             </form>

@@ -13,6 +13,7 @@ class Commande extends Model
 
     protected $fillable = [
         'adresse_id',
+        'user_id',
         'date',
         'statut',
         'type_paiement',
@@ -22,5 +23,10 @@ class Commande extends Model
     public function adresse()
     {
         return $this->hasOne(Adresse::class, 'adresse_id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'user_id');
     }
 }

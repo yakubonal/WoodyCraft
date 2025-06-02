@@ -27,9 +27,13 @@ class PaiementController extends Controller
         // Obtention du montant total du panier
         $total = PanierController::get_total($panier);
 
+        // Obtention de l'utilisateur actuel
+        $user = auth()->user();
+
         // Ajouter le contenu du panier à la table "Commandes"
         $commande = Commande::create([
             'adresse_id' => $panier->adresse_id,
+            'user_id' => $user->id,
             'statut' => "ok",
             'type_paiement' => $type_paiement,
             'montant_total' => $total,
