@@ -33,7 +33,7 @@ class PaiementController extends Controller
         // Ajouter le contenu du panier à la table "Commandes"
         $commande = Commande::create([
             'adresse_id' => $panier->adresse_id,
-            'user_id' => $user->id,
+            'user_id' => isset($user->id) ? $user->id : null,
             'statut' => "ok",
             'type_paiement' => $type_paiement,
             'montant_total' => $total,
