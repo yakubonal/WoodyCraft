@@ -16,8 +16,8 @@ class CommandeController extends Controller
             return redirect()->route('adresse.index')->with('error', 'Adresse non valide.');
         }
 
-        // Ici, tu gères le processus de paiement
-        // Par exemple : redirection vers une passerelle de paiement ou une page de confirmation
         return view('paiement.index', compact('adresse'));
     }
+
+
 }

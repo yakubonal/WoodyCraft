@@ -29,4 +29,3 @@ return new class extends Migration // Début de la définition de la migration
         Schema::dropIfExists('article_panier'); // Supprime la table 'article_panier' si elle existe
     }
 };
-

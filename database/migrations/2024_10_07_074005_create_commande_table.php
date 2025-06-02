@@ -14,7 +14,6 @@ return new class extends Migration // Début de la définition de la migration
         Schema::disableForeignKeyConstraints(); // Désactive les contraintes de clé étrangère pour éviter des problèmes lors de la création de la table
         Schema::create('commande', function (Blueprint $table) { // Création de la table 'commande'
             $table->id(); // Création de la colonne 'id' (clé primaire, auto-increment)
-            $table->foreignId('panier_id')->constrained('panier'); // Création de la colonne 'panier_id' comme clé étrangère vers la table 'panier'. Supprime la commande si le panier est supprimé.
             $table->foreignId('adresse_id')->constrained('adresses'); // Création de la colonne 'adresse_id' comme clé étrangère vers la table 'adresse'. Supprime la commande si l'adresse de livraison est supprimée.
             $table->dateTime('date'); // Création de la colonne 'date' pour stocker la date et l'heure de la commande
             $table->string('statut'); // Création de la colonne 'statut' pour stocker le statut de la commande (ex: en traitement, expédiée, livrée, etc.)

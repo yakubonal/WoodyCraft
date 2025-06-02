@@ -12,18 +12,12 @@ class Commande extends Model
     protected $table = 'commande';
 
     protected $fillable = [
-        'panier_id',
         'adresse_id',
         'date',
         'statut',
         'type_paiement',
         'montant_total',
     ];
-
-    public function panier()
-    {
-        return $this->hasOne(Panier::class, 'panier_id');
-    }
 
     public function adresse()
     {
