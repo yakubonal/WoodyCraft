@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Avis;
 use Illuminate\Http\Request;
 use App\Models\Produit; // Modèle Produit
+use App\Models\User;
 
 class ProduitController extends Controller
 {
@@ -20,7 +22,27 @@ class ProduitController extends Controller
     // Affiche un produit spécifique
     public function show($id)
     {
-        $produit = Produit::findOrFail($id); // Récupère le produit par son ID ou génère une erreur 404
-        return view('produits.unProduit', compact('produit')); // Passe le produit à la vue
+        $produit = Produit::findOrFail($id);
+
+        $avis = Avis::where('produit_id', $produit->id)->get();
+
+        $data = [];
+
+        foreach ($avis as $un_avis) {
+            // Ajout du produit
+            $element = [
+                "nom_user" => $un_avis->user->name,
+                "note" => $un_avis->note,
+                "commentaire" => $un_avis->commentaire,
+            ];
+
+            // On ajoute chaque produit dans un array pour pouvoir générer le PDF
+            array_push($data, $element);
+        }
+
+        return view('produits.unProduit', [
+            'produit' => $produit,
+            'avis' => $data,
+        ]);
     }
 }

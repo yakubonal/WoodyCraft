@@ -1,7 +1,8 @@
 <x-app-layout>
     <div class="container my-5">
         <div class="container my-5 position-relative">
-            <a href="{{ route('categorie.index') }}" class="btn position-absolute start-0" style="top: -10px; background-color: #a3e4a1; color: #155724; border: 1px solid #81d48a;">Retour</a>
+            <a href="{{ route('categorie.index') }}" class="btn position-absolute start-0"
+                style="top: -10px; background-color: #a3e4a1; color: #155724; border: 1px solid #81d48a;">Retour</a>
             <h1 class="text-center my-5 py-4">{{ $produit->nom }}</h1>
             <div class="row">
                 <div class="col-md-6">
@@ -19,12 +20,33 @@
                     <form method="POST">
                         @csrf
                         <input type="hidden" name="produit_id" value="{{ $produit->id }}">
-                        <input type="number" name="quantity" id="quantity" placeholder="Quantité ?" class="form-control mb-2" min="0" max="10">
-                        <button type="submit" id="addToCartBtn" class="btn btn-success" formaction="{{ route('panier.ajout') }}">Ajouter au panier</button>
-                        <button type="submit" id="addToWishlistBtn" class="btn btn-success" formaction="{{ route('wishlist.ajout') }}">Ajouter à la wishlist</button>
+                        <input type="number" name="quantity" id="quantity" placeholder="Quantité ?"
+                            class="form-control mb-2" min="0" max="10">
+                        <button type="submit" id="addToCartBtn" class="btn btn-success"
+                            formaction="{{ route('panier.ajout') }}">Ajouter au panier</button>
+                        <button type="submit" id="addToWishlistBtn" class="btn btn-success"
+                            formaction="{{ route('wishlist.ajout') }}">Ajouter à la wishlist</button>
                     </form>
                 </div>
             </div>
+        </div>
+        <div class="container">
+            <h2>Avis</h2>
+            @forelse ($avis as $un_avis)
+                <div class="col-md-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $un_avis['nom_user'] }}</h5>
+                            <p class="card-text">Note : {{ $un_avis['note'] }}/5</p>
+                            <p class="card-text">{{ $un_avis['commentaire'] }}</p>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <p>
+                    Il n'y a pas encore d'avis pour ce produit.
+                </p>
+            @endforelse
         </div>
     </div>
 
