@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col s12 cards-container">
                 @if (isset($message))
-                    <div class="alert alert-warning text-center">
+                    <div class="alert alert-success text-center">
                         {{ $message }}
                     </div>
                 @endif

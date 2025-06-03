@@ -5,6 +5,7 @@ use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\AdresseController;
+use App\Http\Controllers\AvisController;
 use App\Http\Controllers\CommandeController;
 
 use App\Http\Controllers\PaiementController;
@@ -53,5 +54,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 Route::get('/commande', [CommandeController::class, 'index'])->name('commande.index');
 Route::get('/commande/{id}', [CommandeController::class, 'details'])->name('commande.details');
 Route::post('/commande/payer', [CommandeController::class, 'payer'])->name('commande.payer');
+
+Route::get('/avis/{id}', [AvisController::class, 'formulaire'])->name('avis.formulaire');
+Route::post('/avis/{id}', [AvisController::class, 'ajout'])->name('avis.ajout');
 
 require __DIR__.'/auth.php'; // Charge les routes d'authentification

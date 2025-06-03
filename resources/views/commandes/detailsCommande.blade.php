@@ -26,6 +26,9 @@
                                         <!-- Affichage de la quantité -->
                                         <span>Quantité : {{ $article['quantity'] }}</span>
                                     </div>
+                                    <a class="btn btn-sm btn-success" href="{{ route('avis.formulaire', $article['id']) }}">
+                                        <i class="fa fa-comments mr-2"></i> Laisser un avis
+                                    </a>
                                 </div>
                             </div>
                         </div>

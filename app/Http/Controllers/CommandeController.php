@@ -29,9 +29,17 @@ class CommandeController extends Controller
         // Obtention des commandes de l'utilisateur
         $commandes = Commande::where('user_id', $user->id)->get();
 
+        // Si le message n'est pas déjà défini dans la session, on le définit
+        if (session()->has('message')) {
+            $message = session()->get('message');
+        }
+        else {
+            $message = $commandes->isEmpty() ? "Vous n'avez aucune commande." : null;
+        }
+
         return view('commandes.index', [
             'commandes' => $commandes,
-            'message' => $commandes->isEmpty() ? "Vous n'avez aucune commande." : null
+            'message' => $message,
         ]);
     }
 
@@ -56,6 +64,7 @@ class CommandeController extends Controller
 
             // Ajout du produit
             $element = [
+                "id" => $produit->id,
                 "nom" => $produit->nom,
                 "image_url" => "",
                 "quantity" => $article_commande->quantity,
